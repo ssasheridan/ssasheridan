@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals"],
+  "extends": ["next"],
   "ignorePatterns": ["src/sanity/schemas/**/*.ts", "src/types/index.ts"],
   "rules": {
     "react/no-unescaped-entities": "off",
