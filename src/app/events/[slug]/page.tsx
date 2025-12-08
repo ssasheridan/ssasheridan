@@ -36,8 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const bannerImageUrl = event.bannerImage && urlFor(event.bannerImage)
-    ? urlFor(event.bannerImage)!.width(1200).height(630).url()
+  const bannerImageBuilder = event.bannerImage ? urlFor(event.bannerImage) : null
+  const bannerImageUrl = bannerImageBuilder
+    ? bannerImageBuilder.width(1200).height(630).url()
     : undefined
 
   return {
@@ -74,7 +75,7 @@ export default async function EventPage({ params }: Props) {
     <div className="page-transition">
       {/* Banner */}
       <section className="relative pt-20 h-[50vh] min-h-[400px]">
-        {event.bannerImage ? (
+        {event.bannerImage && urlFor(event.bannerImage) ? (
           <Image
             src={urlFor(event.bannerImage)!.width(1920).height(800).url()}
             alt={event.title}
