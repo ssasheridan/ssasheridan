@@ -71,13 +71,18 @@ export default async function EventPage({ params }: Props) {
     minute: '2-digit',
   })
 
+  const bannerImageBuilder = event.bannerImage ? urlFor(event.bannerImage) : null
+  const bannerImageSrc = bannerImageBuilder
+    ? bannerImageBuilder.width(1920).height(800).url()
+    : null
+
   return (
     <div className="page-transition">
       {/* Banner */}
       <section className="relative pt-20 h-[50vh] min-h-[400px]">
-        {event.bannerImage && urlFor(event.bannerImage) ? (
+        {bannerImageSrc ? (
           <Image
-            src={urlFor(event.bannerImage)!.width(1920).height(800).url()}
+            src={bannerImageSrc}
             alt={event.title}
             fill
             className="object-cover"
