@@ -23,9 +23,9 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
       <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full text-center">
         {/* Image */}
         <div className="relative h-64 overflow-hidden">
-          {member.image ? (
+          {member.image && urlFor(member.image) ? (
             <Image
-              src={urlFor(member.image).width(400).height(400).url()}
+              src={urlFor(member.image)!.width(400).height(400).url()}
               alt={member.name}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700"

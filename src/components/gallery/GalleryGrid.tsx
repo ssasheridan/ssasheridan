@@ -45,22 +45,26 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
     <>
       {/* Grid */}
       <div className={`grid ${gridCols[columns]} gap-4`}>
-        {images.map((image, index) => (
-          <motion.button
-            key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.05 }}
-            onClick={() => openLightbox(index)}
-            className="group relative aspect-square overflow-hidden rounded-xl focus:outline-none focus:ring-2 focus:ring-khalsa"
-          >
-            <Image
-              src={urlFor(image).width(600).height(600).url()}
-              alt={image.caption || `Gallery image ${index + 1}`}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+        {images.map((image, index) => {
+          const imageUrl = urlFor(image)
+          if (!imageUrl) return null
+          
+          return (
+            <motion.button
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              onClick={() => openLightbox(index)}
+              className="group relative aspect-square overflow-hidden rounded-xl focus:outline-none focus:ring-2 focus:ring-khalsa"
+            >
+              <Image
+                src={imageUrl.width(600).height(600).url()}
+                alt={image.caption || `Gallery image ${index + 1}`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
+              />
             <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/50 transition-colors duration-300 flex items-center justify-center">
               <motion.span
                 className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
@@ -69,8 +73,9 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
                 View
               </motion.span>
             </div>
-          </motion.button>
-        ))}
+            </motion.button>
+          )
+        })}
       </div>
 
       {/* Lightbox */}
@@ -129,13 +134,15 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
               className="relative max-w-5xl max-h-[85vh] mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
-                src={urlFor(images[selectedIndex]).width(1200).height(800).url()}
-                alt={images[selectedIndex].caption || `Gallery image ${selectedIndex + 1}`}
-                width={1200}
-                height={800}
-                className="object-contain rounded-lg"
-              />
+              {urlFor(images[selectedIndex]) && (
+                <Image
+                  src={urlFor(images[selectedIndex])!.width(1200).height(800).url()}
+                  alt={images[selectedIndex].caption || `Gallery image ${selectedIndex + 1}`}
+                  width={1200}
+                  height={800}
+                  className="object-contain rounded-lg"
+                />
+              )}
 
               {/* Caption */}
               {images[selectedIndex].caption && (

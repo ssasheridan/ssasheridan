@@ -225,7 +225,7 @@ export default function SupportServicesSection({
 
             {/* Right Side - Visual (Poster or Symbol) */}
             <div className="text-center lg:text-right">
-              {rehrasSahib?.poster ? (
+              {rehrasSahib?.poster && urlFor(rehrasSahib.poster) ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -235,7 +235,7 @@ export default function SupportServicesSection({
                 >
                   <div className="relative aspect-[3/4] w-full max-w-sm mx-auto lg:mx-0">
                     <Image
-                      src={urlFor(rehrasSahib.poster).width(600).height(800).url()}
+                      src={urlFor(rehrasSahib.poster)!.width(600).height(800).url()}
                       alt="Rehras Sahib Path Poster"
                       fill
                       className="object-cover"

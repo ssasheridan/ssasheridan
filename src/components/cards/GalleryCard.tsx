@@ -27,9 +27,9 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
         <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500">
           {/* Image */}
           <div className="relative h-64 overflow-hidden">
-            {gallery.coverImage ? (
+            {gallery.coverImage && urlFor(gallery.coverImage) ? (
               <Image
-                src={urlFor(gallery.coverImage).width(600).height(400).url()}
+                src={urlFor(gallery.coverImage)!.width(600).height(400).url()}
                 alt={gallery.title}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"

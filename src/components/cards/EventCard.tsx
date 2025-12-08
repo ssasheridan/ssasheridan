@@ -37,9 +37,9 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
         <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full">
           {/* Image */}
           <div className="relative h-48 overflow-hidden">
-            {event.bannerImage ? (
+            {event.bannerImage && urlFor(event.bannerImage) ? (
               <Image
-                src={urlFor(event.bannerImage).width(600).height(300).url()}
+                src={urlFor(event.bannerImage)!.width(600).height(300).url()}
                 alt={event.title}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
