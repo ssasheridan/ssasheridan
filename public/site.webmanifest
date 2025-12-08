@@ -1,0 +1,17 @@
+{
+  "name": "SSA Sheridan - Sikh Students Association",
+  "short_name": "SSA Sheridan",
+  "description": "Empowering Students, Celebrating Sikhi. Your Sheridan Support Hub.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#192441",
+  "theme_color": "#F9A602",
+  "icons": [
+    {
+      "src": "/logos/logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}
+

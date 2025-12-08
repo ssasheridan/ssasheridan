@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #192441;
+  --navy-dark: #0f1729;
+  --navy-light: #243258;
+  --softblue: #8C99B8;
+  --khalsa: #F9A602;
+  --kesri: #F4A300;
+  --lightgrey: #F5F6FA;
+  --dark: #0A0A0A;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-lightgrey text-dark antialiased;
+  }
+  
+  ::selection {
+    @apply bg-khalsa/30 text-navy;
+  }
+}
+
+@layer components {
+  .gradient-gold {
+    background: linear-gradient(135deg, #F9A602 0%, #F4A300 50%, #FFB833 100%);
+  }
+  
+  .gradient-navy {
+    background: linear-gradient(135deg, #192441 0%, #243258 50%, #192441 100%);
+  }
+  
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background: linear-gradient(135deg, #F9A602 0%, #F4A300 100%);
+  }
+  
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-lg border border-white/20 rounded-2xl shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply bg-navy/80 backdrop-blur-lg border border-white/10 rounded-2xl;
+  }
+  
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(249, 166, 2, 0.3);
+  }
+  
+  .glow-gold-strong {
+    box-shadow: 0 0 50px rgba(249, 166, 2, 0.5);
+  }
+  
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-lightgrey;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-softblue rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-navy;
+}
+
+/* Khanda symbol animation */
+@keyframes khanda-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.khanda-spin {
+  animation: khanda-rotate 30s linear infinite;
+}
+
+/* Page transition */
+.page-transition {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
