@@ -1,11 +1,9 @@
 {
   "extends": ["next/core-web-vitals"],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "ignorePatterns": ["src/sanity/schemas/**/*.ts", "src/types/index.ts"],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "import/no-anonymous-default-export": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "import/no-anonymous-default-export": "off"
   }
 }
 

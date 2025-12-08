@@ -1,3 +1,4 @@
 # Sanity schema files - these use default exports which ESLint doesn't like
 src/sanity/schemas/**/*.ts
+src/types/index.ts
 
