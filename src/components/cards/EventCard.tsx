@@ -25,6 +25,11 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
     minute: '2-digit',
   })
 
+  const bannerImageBuilder = event.bannerImage ? urlFor(event.bannerImage) : null
+  const bannerImageSrc = bannerImageBuilder
+    ? bannerImageBuilder.width(600).height(300).url()
+    : null
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -37,9 +42,9 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
         <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full">
           {/* Image */}
           <div className="relative h-48 overflow-hidden">
-            {event.bannerImage && urlFor(event.bannerImage) ? (
+            {bannerImageSrc ? (
               <Image
-                src={urlFor(event.bannerImage)!.width(600).height(300).url()}
+                src={bannerImageSrc}
                 alt={event.title}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"

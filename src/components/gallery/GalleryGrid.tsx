@@ -134,15 +134,22 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
               className="relative max-w-5xl max-h-[85vh] mx-4"
               onClick={(e) => e.stopPropagation()}
             >
-              {urlFor(images[selectedIndex]) && (
-                <Image
-                  src={urlFor(images[selectedIndex])!.width(1200).height(800).url()}
-                  alt={images[selectedIndex].caption || `Gallery image ${selectedIndex + 1}`}
-                  width={1200}
-                  height={800}
-                  className="object-contain rounded-lg"
-                />
-              )}
+              {(() => {
+                const lightboxImageBuilder = images[selectedIndex] ? urlFor(images[selectedIndex]) : null
+                const lightboxImageSrc = lightboxImageBuilder
+                  ? lightboxImageBuilder.width(1200).height(800).url()
+                  : null
+                
+                return lightboxImageSrc ? (
+                  <Image
+                    src={lightboxImageSrc}
+                    alt={images[selectedIndex].caption || `Gallery image ${selectedIndex + 1}`}
+                    width={1200}
+                    height={800}
+                    className="object-contain rounded-lg"
+                  />
+                ) : null
+              })()}
 
               {/* Caption */}
               {images[selectedIndex].caption && (

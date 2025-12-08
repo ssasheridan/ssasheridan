@@ -15,6 +15,11 @@ interface GalleryCardProps {
 export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
   const imageCount = gallery.images?.length || 0
 
+  const coverImageBuilder = gallery.coverImage ? urlFor(gallery.coverImage) : null
+  const coverImageSrc = coverImageBuilder
+    ? coverImageBuilder.width(600).height(400).url()
+    : null
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -27,9 +32,9 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
         <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500">
           {/* Image */}
           <div className="relative h-64 overflow-hidden">
-            {gallery.coverImage && urlFor(gallery.coverImage) ? (
+            {coverImageSrc ? (
               <Image
-                src={urlFor(gallery.coverImage)!.width(600).height(400).url()}
+                src={coverImageSrc}
                 alt={gallery.title}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"

@@ -12,6 +12,11 @@ interface TeamCardProps {
 }
 
 export default function TeamCard({ member, index = 0 }: TeamCardProps) {
+  const memberImageBuilder = member.image ? urlFor(member.image) : null
+  const memberImageSrc = memberImageBuilder
+    ? memberImageBuilder.width(400).height(400).url()
+    : null
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -23,9 +28,9 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
       <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full text-center">
         {/* Image */}
         <div className="relative h-64 overflow-hidden">
-          {member.image && urlFor(member.image) ? (
+          {memberImageSrc ? (
             <Image
-              src={urlFor(member.image)!.width(400).height(400).url()}
+              src={memberImageSrc}
               alt={member.name}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700"
