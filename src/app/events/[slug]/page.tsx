@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const bannerImageUrl = event.bannerImage
-    ? urlFor(event.bannerImage).width(1200).height(630).url()
+  const bannerImageUrl = event.bannerImage && urlFor(event.bannerImage)
+    ? urlFor(event.bannerImage)!.width(1200).height(630).url()
     : undefined
 
   return {

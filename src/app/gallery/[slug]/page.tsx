@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const coverImageUrl = gallery.coverImage
-    ? urlFor(gallery.coverImage).width(1200).height(630).url()
+  const coverImageUrl = gallery.coverImage && urlFor(gallery.coverImage)
+    ? urlFor(gallery.coverImage)!.width(1200).height(630).url()
     : undefined
 
   return {
