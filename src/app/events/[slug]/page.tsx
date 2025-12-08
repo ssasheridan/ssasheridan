@@ -36,15 +36,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  const bannerImageUrl = event.bannerImage
+    ? urlFor(event.bannerImage).width(1200).height(630).url()
+    : undefined
+
   return {
     title: event.title,
     description: event.description || `Join us at ${event.title} hosted by SSA Sheridan.`,
     openGraph: {
       title: `${event.title} | SSA Sheridan`,
       description: event.description || `Join us at ${event.title}`,
-      images: event.bannerImage
-        ? [{ url: urlFor(event.bannerImage).width(1200).height(630).url() }]
-        : undefined,
+      images: bannerImageUrl ? [{ url: bannerImageUrl }] : undefined,
     },
   }
 }
@@ -74,7 +76,7 @@ export default async function EventPage({ params }: Props) {
       <section className="relative pt-20 h-[50vh] min-h-[400px]">
         {event.bannerImage ? (
           <Image
-            src={urlFor(event.bannerImage).width(1920).height(800).url()}
+            src={urlFor(event.bannerImage)!.width(1920).height(800).url()}
             alt={event.title}
             fill
             className="object-cover"

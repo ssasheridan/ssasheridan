@@ -35,15 +35,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  const coverImageUrl = gallery.coverImage
+    ? urlFor(gallery.coverImage).width(1200).height(630).url()
+    : undefined
+
   return {
     title: gallery.title,
     description: `View photos from ${gallery.title} by SSA Sheridan.`,
     openGraph: {
       title: `${gallery.title} | SSA Sheridan Gallery`,
       description: `Photo gallery: ${gallery.title}`,
-      images: gallery.coverImage
-        ? [{ url: urlFor(gallery.coverImage).width(1200).height(630).url() }]
-        : undefined,
+      images: coverImageUrl ? [{ url: coverImageUrl }] : undefined,
     },
   }
 }
