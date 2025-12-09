@@ -154,32 +154,19 @@ export default function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg transition-colors z-[110] relative pointer-events-auto"
-            onClick={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              setIsOpen(!isOpen)
-            }}
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-            style={{ zIndex: 110 }}
-          >
-            {isOpen ? (
-              <HiX
-                className={`w-7 h-7 sm:w-8 sm:h-8 ${
-                  // Mobile: Navy when glassy, white when transparent. Desktop: Use scroll/page logic
-                  showMobileGlass
-                    ? 'text-navy lg:text-white'
-                    : 'text-white'
-                } ${
-                  showBackgroundDesktop && !showMobileGlass
-                    ? 'lg:text-navy'
-                    : ''
-                }`}
-              />
-            ) : (
+          {/* Mobile Menu Button - Hide when menu is open */}
+          {!isOpen && (
+            <button
+              className="lg:hidden p-2 rounded-lg transition-colors z-[110] relative pointer-events-auto"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setIsOpen(true)
+              }}
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+              style={{ zIndex: 110 }}
+            >
               <HiMenu
                 className={`w-7 h-7 sm:w-8 sm:h-8 ${
                   // Mobile: Navy when glassy, white when transparent. Desktop: Use scroll/page logic
@@ -192,8 +179,8 @@ export default function Navbar() {
                     : ''
                 }`}
               />
-            )}
-          </button>
+            </button>
+          )}
         </div>
       </nav>
 
@@ -203,27 +190,46 @@ export default function Navbar() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[55]"
+              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[105]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              style={{ top: 0 }}
+              style={{ 
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                position: 'fixed'
+              }}
             />
             {/* Menu Panel */}
             <motion.div
-              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-[60] shadow-2xl overflow-y-auto"
+              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-[110] shadow-2xl overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              style={{ top: 0 }}
+              style={{ 
+                top: 0,
+                left: 'auto',
+                right: 0,
+                bottom: 0,
+                position: 'fixed',
+                height: '100vh',
+                width: '100%',
+                maxWidth: '24rem'
+              }}
             >
               {/* Close Button inside Menu Panel */}
-              <div className="sticky top-0 bg-navy/98 backdrop-blur-lg z-10 flex justify-end p-4 border-b border-white/10">
+              <div className="sticky top-0 bg-navy/98 backdrop-blur-lg z-20 flex justify-end p-4 border-b border-white/10">
                 <button
-                  onClick={() => setIsOpen(false)}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    setIsOpen(false)
+                  }}
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors pointer-events-auto"
                   aria-label="Close menu"
                 >
                   <HiX className="w-6 h-6 text-white" />
