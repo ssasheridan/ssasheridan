@@ -205,7 +205,7 @@ export default function Navbar() {
             />
             {/* Menu Panel */}
             <motion.div
-              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm bg-navy z-[110] shadow-2xl overflow-y-auto border-l-2 border-khalsa/30"
+              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm z-[110] shadow-2xl overflow-y-auto border-l-2 border-white/20"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -219,26 +219,38 @@ export default function Navbar() {
                 height: '100vh',
                 width: '100%',
                 maxWidth: '24rem',
-                backgroundColor: '#192441', // Solid navy background
-                boxShadow: '-4px 0 20px rgba(0, 0, 0, 0.5)'
+                background: 'linear-gradient(135deg, rgba(25, 36, 65, 0.95) 0%, rgba(35, 50, 88, 0.95) 50%, rgba(25, 36, 65, 0.95) 100%)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                boxShadow: '-4px 0 30px rgba(0, 0, 0, 0.6), inset 0 0 100px rgba(249, 166, 2, 0.05)'
               }}
             >
-              {/* Close Button inside Menu Panel */}
-              <div className="sticky top-0 bg-navy z-20 flex justify-end p-4 border-b-2 border-khalsa/20 backdrop-blur-sm">
-                <button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    setIsOpen(false)
-                  }}
-                  className="w-12 h-12 rounded-full bg-khalsa/20 hover:bg-khalsa/30 border-2 border-khalsa/40 flex items-center justify-center transition-all pointer-events-auto shadow-lg"
-                  aria-label="Close menu"
-                >
-                  <HiX className="w-7 h-7 text-white font-bold" />
-                </button>
+              {/* Header with Organization Name */}
+              <div className="sticky top-0 z-20 bg-gradient-to-b from-navy/95 via-navy/90 to-transparent backdrop-blur-xl border-b border-white/10 pb-4">
+                <div className="flex items-center justify-between p-4">
+                  <div className="flex-1">
+                    <p className="text-white font-display font-bold text-sm leading-tight mb-1">
+                      Sikh Students Association
+                    </p>
+                    <p className="text-white/70 font-display text-xs">
+                      Sheridan
+                    </p>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      setIsOpen(false)
+                    }}
+                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all pointer-events-auto backdrop-blur-sm"
+                    aria-label="Close menu"
+                  >
+                    <HiX className="w-5 h-5 text-white" />
+                  </button>
+                </div>
               </div>
               
-              <div className="flex flex-col items-stretch h-full gap-4 pt-4 pb-24 px-6">
+              <div className="flex flex-col items-stretch h-full gap-3 pt-6 pb-24 px-5">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.href}
@@ -249,10 +261,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-5 py-4 text-lg font-display font-semibold rounded-xl transition-all ${
+                      className={`block px-5 py-4 text-base font-display font-medium rounded-xl transition-all backdrop-blur-sm ${
                         pathname === link.href
-                          ? 'bg-khalsa/30 text-khalsa border-l-4 border-khalsa shadow-lg'
-                          : 'text-white hover:bg-white/15 hover:text-khalsa hover:shadow-md'
+                          ? 'bg-gradient-to-r from-khalsa/30 to-khalsa/20 text-khalsa border-l-4 border-khalsa shadow-lg'
+                          : 'text-white/90 hover:bg-white/10 hover:text-white hover:shadow-md border-l-4 border-transparent'
                       }`}
                     >
                       {link.label}
