@@ -83,9 +83,10 @@ export default function Navbar() {
                 priority
               />
             </motion.div>
-            <div className="hidden xs:block">
+            <div className="block">
+              {/* Mobile: Show "SSA, Sheridan" on small screens, full text on larger */}
               <p
-                className={`font-display font-bold text-base sm:text-lg leading-tight ${
+                className={`font-display font-bold leading-tight ${
                   // Mobile: White when transparent, navy when glassy. Desktop: Use scroll/page logic
                   showMobileGlass
                     ? 'text-navy lg:text-white'
@@ -94,23 +95,35 @@ export default function Navbar() {
                   showBackgroundDesktop && !showMobileGlass
                     ? 'lg:text-navy'
                     : ''
+                } ${
+                  // Text sizing: smaller on mobile, larger on desktop
+                  'text-sm sm:text-base md:text-lg'
+                } ${
+                  // Add drop shadow when transparent for better visibility
+                  !showMobileGlass ? 'drop-shadow-lg' : ''
                 }`}
               >
-                SSA Sheridan
+                <span className="sm:hidden">SSA, Sheridan</span>
+                <span className="hidden sm:inline md:hidden">SSA Sheridan</span>
+                <span className="hidden md:inline">Sikh Students Association, Sheridan</span>
               </p>
+              {/* Subtitle only on larger mobile screens and desktop */}
               <p
-                className={`text-[10px] sm:text-xs ${
-                  // Mobile: White/70 when transparent, softblue when glassy. Desktop: Use scroll/page logic
+                className={`hidden sm:block text-[10px] sm:text-xs ${
+                  // Mobile: White/80 when transparent, softblue when glassy. Desktop: Use scroll/page logic
                   showMobileGlass
                     ? 'text-softblue lg:text-white/70'
-                    : 'text-white/70'
+                    : 'text-white/80'
                 } ${
                   showBackgroundDesktop && !showMobileGlass
                     ? 'lg:text-softblue'
                     : ''
+                } ${
+                  // Add drop shadow when transparent for better visibility
+                  !showMobileGlass ? 'drop-shadow-md' : ''
                 }`}
               >
-                Sikh Students Association
+                Empowering Students, Celebrating Sikhi
               </p>
             </div>
           </Link>
