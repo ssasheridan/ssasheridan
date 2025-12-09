@@ -33,6 +33,18 @@ export default function Navbar() {
     setIsOpen(false)
   }, [pathname])
 
+  // Add/remove class to body when menu is open to hide scroll-to-top button
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('menu-open')
+    } else {
+      document.body.classList.remove('menu-open')
+    }
+    return () => {
+      document.body.classList.remove('menu-open')
+    }
+  }, [isOpen])
+
   // Show navbar with background on non-home pages or when scrolled
   // Mobile: Transparent at top, translucent/glassy when scrolled
   // Desktop: Use scroll/page logic
@@ -221,18 +233,18 @@ export default function Navbar() {
                 maxWidth: '24rem',
                 background: `
                   linear-gradient(135deg, 
-                    rgba(25, 36, 65, 0.85) 0%, 
-                    rgba(35, 50, 88, 0.85) 25%,
-                    rgba(249, 166, 2, 0.2) 50%,
-                    rgba(255, 255, 255, 0.15) 75%,
-                    rgba(25, 36, 65, 0.85) 100%
+                    rgba(25, 36, 65, 0.95) 0%, 
+                    rgba(35, 50, 88, 0.95) 25%,
+                    rgba(249, 166, 2, 0.25) 50%,
+                    rgba(255, 255, 255, 0.2) 75%,
+                    rgba(25, 36, 65, 0.95) 100%
                   ),
-                  radial-gradient(circle at 20% 30%, rgba(249, 166, 2, 0.25) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(140, 153, 184, 0.25) 0%, transparent 50%),
-                  radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 70%)
+                  radial-gradient(circle at 20% 30%, rgba(249, 166, 2, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(140, 153, 184, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 70%)
                 `,
-                backdropFilter: 'blur(20px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                backdropFilter: 'blur(25px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(25px) saturate(180%)',
                 boxShadow: '-4px 0 40px rgba(0, 0, 0, 0.7), inset 0 0 200px rgba(249, 166, 2, 0.1)',
                 borderLeft: '2px solid rgba(255, 255, 255, 0.2)'
               }}
@@ -282,7 +294,7 @@ export default function Navbar() {
               </div>
 
               {/* Header with Logo and Organization Name */}
-              <div className="sticky top-0 z-20 bg-gradient-to-b from-navy/85 via-navy/80 to-transparent backdrop-blur-xl border-b border-white/20 pb-4">
+              <div className="sticky top-0 z-20 bg-gradient-to-b from-navy/95 via-navy/90 to-transparent backdrop-blur-xl border-b border-white/20 pb-4">
                 <div className="flex items-center justify-between p-4">
                   <div className="flex items-center gap-3 flex-1">
                     <Image
@@ -345,78 +357,6 @@ export default function Navbar() {
                   <Button href="/join" size="lg" className="w-full justify-center backdrop-blur-sm">
                     Join SSA
                   </Button>
-                </motion.div>
-
-                {/* Two Sikh Swords (Kirpans) Below Join Button */}
-                <motion.div
-                  className="mt-8 mb-4 flex justify-center items-center gap-8"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: (navLinks.length + 1) * 0.05, duration: 0.6 }}
-                >
-                  <svg
-                    viewBox="0 0 200 200"
-                    className="w-20 h-20 sm:w-24 sm:h-24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* Kirpan 1 (Left) */}
-                    <g transform="translate(100, 100) rotate(-20)">
-                      {/* Blade - curved */}
-                      <path
-                        d="M -50 -5 Q -30 0 -10 5 Q 10 8 30 5 Q 50 0 60 -5 L 55 -8 Q 35 -3 15 -6 Q -5 -8 -25 -6 Q -45 -5 -50 -5 Z"
-                        fill="currentColor"
-                        className="text-white"
-                        opacity="0.9"
-                      />
-                      {/* Blade edge highlight */}
-                      <path
-                        d="M -50 -5 Q -30 0 -10 5 Q 10 8 30 5 Q 50 0 60 -5"
-                        stroke="currentColor"
-                        className="text-white/50"
-                        strokeWidth="0.5"
-                        fill="none"
-                      />
-                      {/* Handle */}
-                      <rect x="-55" y="-8" width="12" height="6" fill="currentColor" className="text-khalsa" rx="2" />
-                      {/* Handle grip */}
-                      <rect x="-55" y="-7" width="12" height="4" fill="currentColor" className="text-white/30" rx="1" />
-                      {/* Pommel */}
-                      <circle cx="-49" cy="-5" r="3" fill="currentColor" className="text-khalsa" />
-                    </g>
-                  </svg>
-                  
-                  <svg
-                    viewBox="0 0 200 200"
-                    className="w-20 h-20 sm:w-24 sm:h-24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* Kirpan 2 (Right) */}
-                    <g transform="translate(100, 100) rotate(20) scaleX(-1)">
-                      {/* Blade - curved */}
-                      <path
-                        d="M -50 -5 Q -30 0 -10 5 Q 10 8 30 5 Q 50 0 60 -5 L 55 -8 Q 35 -3 15 -6 Q -5 -8 -25 -6 Q -45 -5 -50 -5 Z"
-                        fill="currentColor"
-                        className="text-white"
-                        opacity="0.9"
-                      />
-                      {/* Blade edge highlight */}
-                      <path
-                        d="M -50 -5 Q -30 0 -10 5 Q 10 8 30 5 Q 50 0 60 -5"
-                        stroke="currentColor"
-                        className="text-white/50"
-                        strokeWidth="0.5"
-                        fill="none"
-                      />
-                      {/* Handle */}
-                      <rect x="-55" y="-8" width="12" height="6" fill="currentColor" className="text-khalsa" rx="2" />
-                      {/* Handle grip */}
-                      <rect x="-55" y="-7" width="12" height="4" fill="currentColor" className="text-white/30" rx="1" />
-                      {/* Pommel */}
-                      <circle cx="-49" cy="-5" r="3" fill="currentColor" className="text-khalsa" />
-                    </g>
-                  </svg>
                 </motion.div>
               </div>
             </motion.div>

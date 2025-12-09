@@ -6,6 +6,7 @@ import { FaArrowUp } from 'react-icons/fa'
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -17,8 +18,26 @@ export default function ScrollToTop() {
       }
     }
 
+    // Check if menu is open by checking body class
+    const checkMenuState = () => {
+      setMenuOpen(document.body.classList.contains('menu-open'))
+    }
+
+    // Use MutationObserver to watch for class changes on body
+    const observer = new MutationObserver(checkMenuState)
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class']
+    })
+
+    // Initial check
+    checkMenuState()
+
     window.addEventListener('scroll', toggleVisibility)
-    return () => window.removeEventListener('scroll', toggleVisibility)
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility)
+      observer.disconnect()
+    }
   }, [])
 
   const scrollToTop = () => {
@@ -30,7 +49,7 @@ export default function ScrollToTop() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {isVisible && !menuOpen && (
         <motion.button
           initial={{ opacity: 0, scale: 0.5, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
