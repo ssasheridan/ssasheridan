@@ -27,7 +27,7 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
   })
 
   const bannerImageBuilder = event.bannerImage ? urlFor(event.bannerImage) : null
-  const bannerImageSrc = bannerImageBuilder
+  const bannerImageSrc = bannerImageBuilder && event.bannerImage
     ? bannerImageBuilder.width(600).height(300).url()
     : null
 
