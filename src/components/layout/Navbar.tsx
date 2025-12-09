@@ -12,7 +12,6 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/events', label: 'Events' },
-  { href: '/team', label: 'Team' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -35,8 +34,13 @@ export default function Navbar() {
   }, [pathname])
 
   // Show navbar with background on non-home pages or when scrolled
+  // Also check for event detail pages and other pages with banners
   const isHomePage = pathname === '/'
-  const showBackground = !isHomePage || scrolled
+  const isAboutPage = pathname === '/about'
+  const isEventDetailPage = pathname?.startsWith('/events/')
+  const isGalleryDetailPage = pathname?.startsWith('/gallery/')
+  const hasBannerPage = isHomePage || isAboutPage || isEventDetailPage || isGalleryDetailPage
+  const showBackground = !hasBannerPage || scrolled
 
   return (
     <motion.header
@@ -108,7 +112,7 @@ export default function Navbar() {
                 )}
               </Link>
             ))}
-            <Button href="https://forms.office.com/r/ackW8bMdtn" size="sm" external>
+            <Button href="/join" size="sm">
               Join SSA
             </Button>
           </div>
@@ -167,7 +171,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.1 }}
               >
-                <Button href="https://forms.office.com/r/ackW8bMdtn" size="lg" external>
+                <Button href="/join" size="lg">
                   Join SSA
                 </Button>
               </motion.div>

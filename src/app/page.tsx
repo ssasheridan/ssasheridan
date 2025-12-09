@@ -1,11 +1,11 @@
 import { Metadata } from 'next'
 import { safeFetch } from '@/sanity/client'
-import { siteSettingsQuery, upcomingEventsQuery } from '@/sanity/queries'
-import { SiteSettings, Event } from '@/types'
+import { siteSettingsQuery } from '@/sanity/queries'
+import { SiteSettings } from '@/types'
 import Hero from '@/components/sections/Hero'
 import ValuesSection from '@/components/sections/ValuesSection'
 import SupportServicesSection from '@/components/sections/SupportServicesSection'
-import EventsPreview from '@/components/sections/EventsPreview'
+import ConstitutionSection from '@/components/sections/ConstitutionSection'
 import CampusSection from '@/components/sections/CampusSection'
 import SocialSection from '@/components/sections/SocialSection'
 import JoinCTA from '@/components/sections/JoinCTA'
@@ -13,11 +13,8 @@ import JoinCTA from '@/components/sections/JoinCTA'
 export const revalidate = 60 // Revalidate every 60 seconds
 
 async function getPageData() {
-  const [settings, upcomingEvents] = await Promise.all([
-    safeFetch<SiteSettings>(siteSettingsQuery),
-    safeFetch<Event[]>(upcomingEventsQuery),
-  ])
-  return { settings, upcomingEvents }
+  const settings = await safeFetch<SiteSettings>(siteSettingsQuery)
+  return { settings }
 }
 
 export const metadata: Metadata = {
@@ -27,7 +24,7 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const { settings, upcomingEvents } = await getPageData()
+  const { settings } = await getPageData()
 
   return (
     <div className="page-transition">
@@ -37,8 +34,11 @@ export default async function HomePage() {
         joinLink={settings?.joinFormLink || 'https://forms.office.com/r/ackW8bMdtn'}
       />
       <ValuesSection />
+      <ConstitutionSection
+        title="Our Constitution"
+        subtitle="Learn about our official constitution and organizational bylaws"
+      />
       <SupportServicesSection rehrasSahib={settings?.rehrasSahib} />
-      <EventsPreview events={upcomingEvents || []} />
       <CampusSection />
       <SocialSection
         youtubeUrl={settings?.youtube}

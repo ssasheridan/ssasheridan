@@ -11,16 +11,27 @@ interface PageHeroProps {
 export default function PageHero({ title, subtitle }: PageHeroProps) {
   return (
     <section className="relative pt-32 pb-20 bg-navy overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy-dark via-navy to-navy-light" />
+      {/* Background Banner Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/banners/Banner_HarminderSahib.png"
+          alt="Golden Temple Background"
+          fill
+          className="object-cover opacity-60"
+          priority
+          quality={90}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/70 via-navy/60 to-navy-light/70" />
+      </div>
       
       {/* Pattern Overlay */}
       <div 
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `url('/patterns/Khanda_Pattern.png')`,
           backgroundRepeat: 'repeat',
-          backgroundSize: '200px 200px',
+          backgroundSize: '300px 300px',
         }}
       />
 

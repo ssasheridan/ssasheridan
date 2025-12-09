@@ -96,19 +96,21 @@ export default async function EventPage({ params }: Props) {
         {/* Content Overlay */}
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
-            <Link
-              href="/events"
-              className="inline-flex items-center gap-2 text-white/70 hover:text-white mb-4 transition-colors"
-            >
-              <FaArrowLeft />
-              Back to Events
-            </Link>
+            <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+              <Link
+                href="/events"
+                className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+              >
+                <FaArrowLeft />
+                Back to Events
+              </Link>
 
-            {event.isUpcoming && (
-              <span className="inline-block gradient-gold text-navy text-sm font-bold px-4 py-1 rounded-full mb-4">
-                Upcoming Event
-              </span>
-            )}
+              {event.isUpcoming && (
+                <span className="inline-block gradient-gold text-navy text-sm font-bold px-4 py-1.5 rounded-full shadow-lg">
+                  Upcoming Event
+                </span>
+              )}
+            </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
               {event.title}

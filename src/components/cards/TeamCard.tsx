@@ -23,11 +23,11 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      className="group h-full w-full"
     >
-      <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full text-center">
+      <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full text-center flex flex-col">
         {/* Image */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 overflow-hidden flex-shrink-0">
           {memberImageSrc ? (
             <Image
               src={memberImageSrc}
@@ -75,7 +75,7 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-xl font-display font-bold text-navy mb-1">
             {member.name}
           </h3>
@@ -84,17 +84,19 @@ export default function TeamCard({ member, index = 0 }: TeamCardProps) {
             {member.role}
           </p>
 
-          {member.program && (
-            <p className="text-softblue text-sm mb-1">
-              {member.program}
-            </p>
-          )}
+          <div className="flex-grow">
+            {member.program && (
+              <p className="text-softblue text-sm mb-1">
+                {member.program}
+              </p>
+            )}
 
-          {member.academicYear && (
-            <p className="text-softblue/70 text-sm">
-              {member.academicYear}
-            </p>
-          )}
+            {member.academicYear && (
+              <p className="text-softblue/70 text-sm">
+                {member.academicYear}
+              </p>
+            )}
+          </div>
 
           {/* Decorative Element */}
           <div className="mt-4 h-1 w-12 gradient-gold rounded-full mx-auto opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

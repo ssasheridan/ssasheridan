@@ -13,6 +13,7 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event, index = 0 }: EventCardProps) {
+
   const formattedDate = new Date(event.date).toLocaleDateString('en-US', {
     weekday: 'short',
     month: 'long',
@@ -38,17 +39,31 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <Link href={`/events/${event.slug?.current}`}>
-        <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500 h-full">
+      <Link 
+        href={`/events/${event.slug?.current}`}
+        className="block"
+      >
+        <motion.div 
+          className="glass-card overflow-hidden transition-all duration-300 h-full cursor-pointer"
+          whileHover={{ scale: 1.03, y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.2 }}
+        >
           {/* Image */}
           <div className="relative h-48 overflow-hidden">
             {bannerImageSrc ? (
-              <Image
-                src={bannerImageSrc}
-                alt={event.title}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
-              />
+              <motion.div
+                className="relative w-full h-full"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={bannerImageSrc}
+                  alt={event.title}
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
             ) : (
               <div className="w-full h-full gradient-navy flex items-center justify-center">
                 <span className="text-5xl text-khalsa">ੴ</span>
@@ -57,20 +72,33 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
             
             {/* Upcoming Badge */}
             {event.isUpcoming && (
-              <div className="absolute top-4 left-4 gradient-gold text-navy text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+              <motion.div 
+                className="absolute top-4 left-4 gradient-gold text-navy text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
                 Upcoming
-              </div>
+              </motion.div>
             )}
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            {/* Hover Overlay */}
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent"
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            />
           </div>
 
           {/* Content */}
           <div className="p-6">
-            <h3 className="text-xl font-display font-bold text-navy mb-3 group-hover:text-khalsa transition-colors line-clamp-2">
+            <motion.h3 
+              className="text-xl font-display font-bold text-navy mb-3 group-hover:text-khalsa transition-colors line-clamp-2"
+              whileHover={{ x: 4 }}
+              transition={{ duration: 0.2 }}
+            >
               {event.title}
-            </h3>
+            </motion.h3>
 
             <div className="space-y-2 mb-4">
               <div className="flex items-center gap-2 text-softblue text-sm">
@@ -93,16 +121,31 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
             )}
 
             <div className="flex items-center justify-between pt-4 border-t border-lightgrey-dark">
-              <span className="text-khalsa font-medium text-sm group-hover:translate-x-1 transition-transform">
-                View Details →
-              </span>
+              <motion.span 
+                className="text-khalsa font-medium text-sm group-hover:text-navy transition-colors inline-flex items-center gap-2"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.2 }}
+              >
+                View Details
+                <motion.span
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  →
+                </motion.span>
+              </motion.span>
               
               {event.youtubeLink && (
-                <FaYoutube className="w-5 h-5 text-red-500" />
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <FaYoutube className="w-5 h-5 text-red-500" />
+                </motion.div>
               )}
             </div>
           </div>
-        </div>
+        </motion.div>
       </Link>
     </motion.article>
   )
