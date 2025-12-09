@@ -33,20 +33,24 @@ export default function Navbar() {
     setIsOpen(false)
   }, [pathname])
 
-  // Show navbar with background on non-home pages or when scrolled
+  // Show navbar with background on non-home pages or when scrolled (desktop only)
+  // Mobile navbar stays transparent at all times
   // Also check for event detail pages and other pages with banners
   const isHomePage = pathname === '/'
   const isAboutPage = pathname === '/about'
   const isEventDetailPage = pathname?.startsWith('/events/')
   const isGalleryDetailPage = pathname?.startsWith('/gallery/')
   const hasBannerPage = isHomePage || isAboutPage || isEventDetailPage || isGalleryDetailPage
-  const showBackground = !hasBannerPage || scrolled
+  
+  // On mobile (lg breakpoint), always keep transparent. On desktop, use scroll/page logic
+  const showBackgroundDesktop = !hasBannerPage || scrolled
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        showBackground
-          ? 'bg-white/95 backdrop-blur-lg shadow-lg'
+        // Mobile: Always transparent. Desktop: Use scroll/page logic
+        showBackgroundDesktop
+          ? 'bg-transparent lg:bg-white/95 lg:backdrop-blur-lg lg:shadow-lg'
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -74,14 +78,20 @@ export default function Navbar() {
             <div className="hidden xs:block">
               <p
                 className={`font-display font-bold text-base sm:text-lg leading-tight ${
-                  showBackground ? 'text-navy' : 'text-white'
+                  // Mobile: Always white. Desktop: Use scroll/page logic
+                  showBackgroundDesktop
+                    ? 'text-white lg:text-navy'
+                    : 'text-white'
                 }`}
               >
                 SSA Sheridan
               </p>
               <p
                 className={`text-[10px] sm:text-xs ${
-                  showBackground ? 'text-softblue' : 'text-white/70'
+                  // Mobile: Always white/70. Desktop: Use scroll/page logic
+                  showBackgroundDesktop
+                    ? 'text-white/70 lg:text-softblue'
+                    : 'text-white/70'
                 }`}
               >
                 Sikh Students Association
@@ -98,7 +108,7 @@ export default function Navbar() {
                 className={`relative font-medium transition-colors duration-200 ${
                   pathname === link.href
                     ? 'text-khalsa'
-                    : showBackground
+                    : showBackgroundDesktop
                     ? 'text-navy hover:text-khalsa'
                     : 'text-white hover:text-khalsa'
                 }`}
@@ -126,11 +136,19 @@ export default function Navbar() {
           >
             {isOpen ? (
               <HiX
-                className={`w-7 h-7 sm:w-8 sm:h-8 ${showBackground ? 'text-navy' : 'text-white'}`}
+                className={`w-7 h-7 sm:w-8 sm:h-8 ${
+                  showBackgroundDesktop
+                    ? 'text-white lg:text-navy'
+                    : 'text-white'
+                }`}
               />
             ) : (
               <HiMenu
-                className={`w-7 h-7 sm:w-8 sm:h-8 ${showBackground ? 'text-navy' : 'text-white'}`}
+                className={`w-7 h-7 sm:w-8 sm:h-8 ${
+                  showBackgroundDesktop
+                    ? 'text-white lg:text-navy'
+                    : 'text-white'
+                }`}
               />
             )}
           </button>
@@ -151,7 +169,7 @@ export default function Navbar() {
             />
             {/* Menu Panel */}
             <motion.div
-              className="lg:hidden fixed inset-y-0 right-0 top-20 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-50 shadow-2xl overflow-y-auto"
+              className="lg:hidden fixed inset-y-0 right-0 top-16 sm:top-20 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-50 shadow-2xl overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
