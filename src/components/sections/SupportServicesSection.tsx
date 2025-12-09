@@ -217,7 +217,7 @@ export default function SupportServicesSection({
                 variant="outline" 
                 size="lg"
                 external
-                className="border-white/30 text-white hover:bg-white hover:text-navy w-full sm:w-auto"
+                className="border-white/30 text-white hover:bg-white hover:text-navy"
               >
                 Join Us for Rehras Sahib
               </Button>
@@ -281,12 +281,11 @@ export default function SupportServicesSection({
             Whether you&apos;re facing academic challenges, housing issues, mental health concerns, 
             or need advocacy support - we provide full support no matter what. Reach out anytime!
           </p>
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-4">
             <Button 
               href="https://forms.office.com/r/ackW8bMdtn" 
               size="lg"
               external
-              className="w-full sm:w-auto"
             >
               Get Support Now
             </Button>
@@ -294,7 +293,6 @@ export default function SupportServicesSection({
               href="/contact" 
               variant="outline" 
               size="lg"
-              className="w-full sm:w-auto"
             >
               Contact Us
             </Button>

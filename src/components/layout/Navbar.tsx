@@ -33,8 +33,9 @@ export default function Navbar() {
     setIsOpen(false)
   }, [pathname])
 
-  // Show navbar with background on non-home pages or when scrolled (desktop only)
-  // Mobile navbar stays transparent at all times
+  // Show navbar with background on non-home pages or when scrolled
+  // Mobile: Transparent at top, translucent/glassy when scrolled
+  // Desktop: Use scroll/page logic
   // Also check for event detail pages and other pages with banners
   const isHomePage = pathname === '/'
   const isAboutPage = pathname === '/about'
@@ -42,16 +43,23 @@ export default function Navbar() {
   const isGalleryDetailPage = pathname?.startsWith('/gallery/')
   const hasBannerPage = isHomePage || isAboutPage || isEventDetailPage || isGalleryDetailPage
   
-  // On mobile (lg breakpoint), always keep transparent. On desktop, use scroll/page logic
+  // Desktop: Show background on non-banner pages or when scrolled
   const showBackgroundDesktop = !hasBannerPage || scrolled
+  
+  // Mobile: Show translucent/glassy effect when scrolled (but transparent at top)
+  const showMobileGlass = scrolled
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        // Mobile: Always transparent. Desktop: Use scroll/page logic
-        showBackgroundDesktop
-          ? 'bg-transparent lg:bg-white/95 lg:backdrop-blur-lg lg:shadow-lg'
+        // Mobile: Transparent at top, translucent when scrolled. Desktop: Use scroll/page logic
+        showMobileGlass
+          ? 'bg-white/70 backdrop-blur-md shadow-sm lg:bg-transparent lg:backdrop-blur-none lg:shadow-none'
           : 'bg-transparent'
+      } ${
+        showBackgroundDesktop
+          ? 'lg:bg-white/95 lg:backdrop-blur-lg lg:shadow-lg'
+          : ''
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -78,20 +86,28 @@ export default function Navbar() {
             <div className="hidden xs:block">
               <p
                 className={`font-display font-bold text-base sm:text-lg leading-tight ${
-                  // Mobile: Always white. Desktop: Use scroll/page logic
-                  showBackgroundDesktop
-                    ? 'text-white lg:text-navy'
+                  // Mobile: White when transparent, navy when glassy. Desktop: Use scroll/page logic
+                  showMobileGlass
+                    ? 'text-navy lg:text-white'
                     : 'text-white'
+                } ${
+                  showBackgroundDesktop && !showMobileGlass
+                    ? 'lg:text-navy'
+                    : ''
                 }`}
               >
                 SSA Sheridan
               </p>
               <p
                 className={`text-[10px] sm:text-xs ${
-                  // Mobile: Always white/70. Desktop: Use scroll/page logic
-                  showBackgroundDesktop
-                    ? 'text-white/70 lg:text-softblue'
+                  // Mobile: White/70 when transparent, softblue when glassy. Desktop: Use scroll/page logic
+                  showMobileGlass
+                    ? 'text-softblue lg:text-white/70'
                     : 'text-white/70'
+                } ${
+                  showBackgroundDesktop && !showMobileGlass
+                    ? 'lg:text-softblue'
+                    : ''
                 }`}
               >
                 Sikh Students Association
@@ -137,17 +153,27 @@ export default function Navbar() {
             {isOpen ? (
               <HiX
                 className={`w-7 h-7 sm:w-8 sm:h-8 ${
-                  showBackgroundDesktop
-                    ? 'text-white lg:text-navy'
+                  // Mobile: Navy when glassy, white when transparent. Desktop: Use scroll/page logic
+                  showMobileGlass
+                    ? 'text-navy lg:text-white'
                     : 'text-white'
+                } ${
+                  showBackgroundDesktop && !showMobileGlass
+                    ? 'lg:text-navy'
+                    : ''
                 }`}
               />
             ) : (
               <HiMenu
                 className={`w-7 h-7 sm:w-8 sm:h-8 ${
-                  showBackgroundDesktop
-                    ? 'text-white lg:text-navy'
+                  // Mobile: Navy when glassy, white when transparent. Desktop: Use scroll/page logic
+                  showMobileGlass
+                    ? 'text-navy lg:text-white'
                     : 'text-white'
+                } ${
+                  showBackgroundDesktop && !showMobileGlass
+                    ? 'lg:text-navy'
+                    : ''
                 }`}
               />
             )}

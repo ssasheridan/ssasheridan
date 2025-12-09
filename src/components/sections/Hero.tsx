@@ -191,15 +191,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
+              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="lg" className="glow-gold w-full sm:w-auto" external>
+              <Button href={joinLink} size="lg" className="glow-gold" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="lg" className="w-full sm:w-auto">
+              <Button href="/events" variant="outline" size="lg">
                 Explore Events
               </Button>
             </motion.div>

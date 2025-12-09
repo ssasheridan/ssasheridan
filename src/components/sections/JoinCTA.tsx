@@ -115,11 +115,11 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
             📱 WhatsApp is our main support platform - Students from all campuses connect here to chat about issues, share experiences, and get personalized help from admins. The form verifies you&apos;re a Sheridan student.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 px-2">
-            <Button href={joinLink} size="lg" className="glow-gold-strong w-full sm:w-auto" external>
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 px-2">
+            <Button href={joinLink} size="lg" className="glow-gold-strong" external>
               Join SSA Today
             </Button>
-            <Button href="/contact" variant="outline" size="lg" className="w-full sm:w-auto">
+            <Button href="/contact" variant="outline" size="lg">
               Contact Us
             </Button>
           </div>
