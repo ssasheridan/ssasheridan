@@ -13,6 +13,7 @@ const nextConfig = {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
+    ignorePatterns: ['studio/**/*'],
   },
   typescript: {
     // !! WARN !!
@@ -20,6 +21,14 @@ const nextConfig = {
     // your project has type errors.
     // !! WARN !!
     ignoreBuildErrors: false,
+  },
+  // Exclude studio from webpack compilation
+  webpack: (config) => {
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/node_modules/**', '**/studio/**'],
+    }
+    return config
   },
 }
 
