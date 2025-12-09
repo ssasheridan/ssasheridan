@@ -205,7 +205,7 @@ export default function Navbar() {
             />
             {/* Menu Panel */}
             <motion.div
-              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-[110] shadow-2xl overflow-y-auto"
+              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm bg-navy z-[110] shadow-2xl overflow-y-auto border-l-2 border-khalsa/30"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -218,21 +218,23 @@ export default function Navbar() {
                 position: 'fixed',
                 height: '100vh',
                 width: '100%',
-                maxWidth: '24rem'
+                maxWidth: '24rem',
+                backgroundColor: '#192441', // Solid navy background
+                boxShadow: '-4px 0 20px rgba(0, 0, 0, 0.5)'
               }}
             >
               {/* Close Button inside Menu Panel */}
-              <div className="sticky top-0 bg-navy/98 backdrop-blur-lg z-20 flex justify-end p-4 border-b border-white/10">
+              <div className="sticky top-0 bg-navy z-20 flex justify-end p-4 border-b-2 border-khalsa/20 backdrop-blur-sm">
                 <button
                   onClick={(e) => {
                     e.preventDefault()
                     e.stopPropagation()
                     setIsOpen(false)
                   }}
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors pointer-events-auto"
+                  className="w-12 h-12 rounded-full bg-khalsa/20 hover:bg-khalsa/30 border-2 border-khalsa/40 flex items-center justify-center transition-all pointer-events-auto shadow-lg"
                   aria-label="Close menu"
                 >
-                  <HiX className="w-6 h-6 text-white" />
+                  <HiX className="w-7 h-7 text-white font-bold" />
                 </button>
               </div>
               
@@ -247,10 +249,10 @@ export default function Navbar() {
                     <Link
                       href={link.href}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-3 text-lg font-display font-medium rounded-lg transition-colors ${
+                      className={`block px-5 py-4 text-lg font-display font-semibold rounded-xl transition-all ${
                         pathname === link.href
-                          ? 'bg-khalsa/20 text-khalsa border-l-4 border-khalsa'
-                          : 'text-white hover:bg-white/10 hover:text-khalsa'
+                          ? 'bg-khalsa/30 text-khalsa border-l-4 border-khalsa shadow-lg'
+                          : 'text-white hover:bg-white/15 hover:text-khalsa hover:shadow-md'
                       }`}
                     >
                       {link.label}
