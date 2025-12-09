@@ -187,21 +187,23 @@ export default function Navbar() {
           <>
             {/* Backdrop */}
             <motion.div
-              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[55]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
+              style={{ top: 0 }}
             />
             {/* Menu Panel */}
             <motion.div
-              className="lg:hidden fixed inset-y-0 right-0 top-16 sm:top-20 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-50 shadow-2xl overflow-y-auto"
+              className="lg:hidden fixed inset-0 right-0 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-[60] shadow-2xl overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              style={{ top: 0 }}
             >
-              <div className="flex flex-col items-stretch h-full gap-4 pt-8 pb-24 px-6">
+              <div className="flex flex-col items-stretch h-full gap-4 pt-20 sm:pt-24 pb-24 px-6">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.href}
