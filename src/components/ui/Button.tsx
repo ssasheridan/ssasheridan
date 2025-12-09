@@ -56,9 +56,9 @@ export default function Button({
   }
 
   const sizes = {
-    sm: 'px-4 py-2 text-sm gap-2',
-    md: 'px-6 py-3 text-base gap-2',
-    lg: 'px-8 py-4 text-lg gap-3',
+    sm: 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm gap-1.5 sm:gap-2',
+    md: 'px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base gap-2',
+    lg: 'px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg gap-2 sm:gap-3',
   }
 
   const combinedStyles = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`

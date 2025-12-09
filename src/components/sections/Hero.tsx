@@ -43,8 +43,8 @@ export default function Hero({
         }}
       />
       
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Animated Background Elements - Hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         {/* Floating Khanda Symbols */}
         <motion.div
           className="absolute top-20 left-10 opacity-10"
@@ -139,7 +139,7 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -147,7 +147,7 @@ export default function Hero({
         >
           {/* Ik Onkar Symbol */}
           <motion.p
-            className="text-6xl md:text-7xl text-khalsa mb-6 font-serif"
+            className="text-5xl sm:text-6xl md:text-7xl text-khalsa mb-4 sm:mb-6 font-serif"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -157,7 +157,7 @@ export default function Hero({
 
           {/* Main Title */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -170,7 +170,7 @@ export default function Hero({
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl md:text-2xl text-white/80 mb-4 font-light"
+            className="text-lg sm:text-xl md:text-2xl text-white/80 mb-3 sm:mb-4 font-light px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -180,7 +180,7 @@ export default function Hero({
 
           {/* Tagline */}
           <motion.p
-            className="text-lg text-khalsa font-medium mb-10"
+            className="text-base sm:text-lg text-khalsa font-medium mb-6 sm:mb-10 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -191,15 +191,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+              className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="lg" className="glow-gold" external>
+              <Button href={joinLink} size="lg" className="glow-gold w-full sm:w-auto" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="lg">
+              <Button href="/events" variant="outline" size="lg" className="w-full sm:w-auto">
                 Explore Events
               </Button>
             </motion.div>

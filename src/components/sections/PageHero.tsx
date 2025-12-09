@@ -10,7 +10,7 @@ interface PageHeroProps {
 
 export default function PageHero({ title, subtitle }: PageHeroProps) {
   return (
-    <section className="relative pt-32 pb-20 bg-navy overflow-hidden">
+    <section className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 bg-navy overflow-hidden">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
@@ -35,8 +35,8 @@ export default function PageHero({ title, subtitle }: PageHeroProps) {
         }}
       />
 
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Decorative Elements - Hidden on mobile */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <motion.div
           className="absolute top-10 right-10 opacity-5"
           animate={{
@@ -83,14 +83,14 @@ export default function PageHero({ title, subtitle }: PageHeroProps) {
       </div>
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <motion.p
-            className="text-4xl text-khalsa mb-4"
+            className="text-3xl sm:text-4xl text-khalsa mb-3 sm:mb-4"
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -98,20 +98,20 @@ export default function PageHero({ title, subtitle }: PageHeroProps) {
             ੴ
           </motion.p>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-3 sm:mb-4 px-2">
             {title}
           </h1>
 
           {subtitle && (
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-2xl mx-auto px-2">
               {subtitle}
             </p>
           )}
 
           <motion.div
-            className="h-1 w-24 gradient-gold rounded-full mx-auto mt-8"
+            className="h-1 w-16 sm:w-20 md:w-24 gradient-gold rounded-full mx-auto mt-6 sm:mt-8"
             initial={{ width: 0 }}
-            animate={{ width: 96 }}
+            animate={{ width: '6rem' }}
             transition={{ duration: 0.8, delay: 0.3 }}
           />
         </motion.div>

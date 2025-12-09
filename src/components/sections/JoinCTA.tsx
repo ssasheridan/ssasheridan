@@ -10,7 +10,7 @@ interface JoinCTAProps {
 
 export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bMdtn' }: JoinCTAProps) {
   return (
-    <section className="py-24 bg-navy relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-24 bg-navy relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0">
         {/* Gradient Overlay */}
@@ -26,9 +26,9 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
           }}
         />
         
-        {/* Floating Elements */}
+        {/* Floating Elements - Hidden on mobile */}
         <motion.div
-          className="absolute top-10 left-10 opacity-10"
+          className="absolute top-10 left-10 opacity-10 hidden md:block"
           animate={{
             y: [0, -15, 0],
             rotate: [0, 5, 0],
@@ -49,7 +49,7 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
         </motion.div>
         
         <motion.div
-          className="absolute bottom-10 right-10 opacity-10"
+          className="absolute bottom-10 right-10 opacity-10 hidden md:block"
           animate={{
             y: [0, 15, 0],
             rotate: [0, -5, 0],
@@ -69,9 +69,9 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
           />
         </motion.div>
 
-        {/* Glowing Orb */}
+        {/* Glowing Orb - Hidden on mobile */}
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-khalsa/10 blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-khalsa/10 blur-3xl hidden md:block"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -84,7 +84,7 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
         />
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
         >
           {/* Ik Onkar */}
           <motion.p
-            className="text-5xl text-khalsa mb-6"
+            className="text-4xl sm:text-5xl text-khalsa mb-4 sm:mb-6"
             initial={{ scale: 0.5, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
@@ -102,31 +102,31 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
             ੴ
           </motion.p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 sm:mb-6 px-2">
             Become Part of Our{' '}
             <span className="text-khalsa drop-shadow-lg">Family</span>
           </h2>
 
-          <p className="text-xl text-white/80 mb-4 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-white/80 mb-3 sm:mb-4 max-w-2xl mx-auto px-2">
             Join SSA Sheridan and connect with fellow students who share your values. 
             Experience community, seva, and spiritual growth together.
           </p>
-          <p className="text-lg text-khalsa/90 mb-8 max-w-2xl mx-auto font-medium">
+          <p className="text-sm sm:text-base md:text-lg text-khalsa/90 mb-6 sm:mb-8 max-w-2xl mx-auto font-medium px-2 leading-relaxed">
             📱 WhatsApp is our main support platform - Students from all campuses connect here to chat about issues, share experiences, and get personalized help from admins. The form verifies you&apos;re a Sheridan student.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button href={joinLink} size="lg" className="glow-gold-strong" external>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 px-2">
+            <Button href={joinLink} size="lg" className="glow-gold-strong w-full sm:w-auto" external>
               Join SSA Today
             </Button>
-            <Button href="/contact" variant="outline" size="lg">
+            <Button href="/contact" variant="outline" size="lg" className="w-full sm:w-auto">
               Contact Us
             </Button>
           </div>
 
           {/* Stats */}
           <motion.div
-            className="mt-16 grid grid-cols-3 gap-8"
+            className="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-2"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -138,10 +138,10 @@ export default function JoinCTA({ joinLink = 'https://forms.office.com/r/ackW8bM
               { number: '3', label: 'Campuses' },
             ].map((stat) => (
               <div key={stat.label}>
-                <p className="text-3xl md:text-4xl font-display font-bold text-khalsa">
+                <p className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-khalsa">
                   {stat.number}
                 </p>
-                <p className="text-white/60 text-sm mt-1 leading-tight">{stat.label}</p>
+                <p className="text-white/60 text-xs sm:text-sm mt-1 leading-tight px-1">{stat.label}</p>
               </div>
             ))}
           </motion.div>

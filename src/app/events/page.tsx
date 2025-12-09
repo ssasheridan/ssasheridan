@@ -38,28 +38,28 @@ export default async function EventsPage() {
       />
 
       {/* Upcoming Events */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <SectionHeader
             title="Upcoming Events"
             subtitle="Don't miss out on these exciting upcoming events"
           />
 
           {upcomingEvents && upcomingEvents.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               {upcomingEvents.map((event, index) => (
-                <div key={event._id} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)] min-w-0 max-w-sm lg:max-w-none">
+                <div key={event._id} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1.33rem)] min-w-0 max-w-sm lg:max-w-none">
                   <EventCard event={event} index={index} />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 glass-card rounded-2xl">
-              <p className="text-5xl mb-4">📅</p>
-              <h3 className="text-xl font-display font-bold text-navy mb-2">
+            <div className="text-center py-12 sm:py-16 glass-card rounded-2xl px-4">
+              <p className="text-4xl sm:text-5xl mb-4">📅</p>
+              <h3 className="text-lg sm:text-xl font-display font-bold text-navy mb-2">
                 No Upcoming Events
               </h3>
-              <p className="text-softblue">
+              <p className="text-sm sm:text-base text-softblue">
                 Check back soon for our next event announcement!
               </p>
             </div>
@@ -68,28 +68,28 @@ export default async function EventsPage() {
       </section>
 
       {/* Past Events */}
-      <section className="py-24 bg-lightgrey">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 md:py-24 bg-lightgrey">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <SectionHeader
             title="Past Events"
             subtitle="Relive the memories from our previous events"
           />
 
           {pastEvents && pastEvents.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               {pastEvents.map((event, index) => (
-                <div key={event._id} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.33rem)] min-w-0 max-w-sm lg:max-w-none">
+                <div key={event._id} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1.33rem)] min-w-0 max-w-sm lg:max-w-none">
                   <EventCard event={event} index={index} />
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 glass-card rounded-2xl">
-              <p className="text-5xl mb-4">🎉</p>
-              <h3 className="text-xl font-display font-bold text-navy mb-2">
+            <div className="text-center py-12 sm:py-16 glass-card rounded-2xl px-4">
+              <p className="text-4xl sm:text-5xl mb-4">🎉</p>
+              <h3 className="text-lg sm:text-xl font-display font-bold text-navy mb-2">
                 Events Coming Soon
               </h3>
-              <p className="text-softblue">
+              <p className="text-sm sm:text-base text-softblue">
                 Our event gallery will be updated soon!
               </p>
             </div>

@@ -44,8 +44,8 @@ export default function Footer() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
           {/* Brand */}
           <motion.div
             className="lg:col-span-1"
@@ -54,20 +54,20 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Image
                 src="/logos/logo.png"
                 alt="SSA Sheridan Logo"
                 width={48}
                 height={48}
-                className="h-12 w-auto object-contain"
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
               />
               <div>
-                <p className="font-display font-bold text-lg">SSA Sheridan</p>
-                <p className="text-sm text-softblue">Sikh Students Association</p>
+                <p className="font-display font-bold text-base sm:text-lg">SSA Sheridan</p>
+                <p className="text-xs sm:text-sm text-softblue">Sikh Students Association</p>
               </div>
             </div>
-            <p className="text-white/70 text-sm leading-relaxed mb-6">
+            <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
               Empowering Students, Celebrating Sikhi. Your Sheridan Support Hub.
             </p>
             <div className="flex gap-4">

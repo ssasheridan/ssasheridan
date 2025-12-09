@@ -53,8 +53,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
@@ -67,20 +67,20 @@ export default function Navbar() {
                 alt="SSA Sheridan Logo"
                 width={48}
                 height={48}
-                className="h-12 w-auto object-contain"
+                className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain"
                 priority
               />
             </motion.div>
-            <div className="hidden sm:block">
+            <div className="hidden xs:block">
               <p
-                className={`font-display font-bold text-lg leading-tight ${
+                className={`font-display font-bold text-base sm:text-lg leading-tight ${
                   showBackground ? 'text-navy' : 'text-white'
                 }`}
               >
                 SSA Sheridan
               </p>
               <p
-                className={`text-xs ${
+                className={`text-[10px] sm:text-xs ${
                   showBackground ? 'text-softblue' : 'text-white/70'
                 }`}
               >
@@ -119,17 +119,18 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg transition-colors"
+            className="lg:hidden p-2 rounded-lg transition-colors z-50 relative"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
             {isOpen ? (
               <HiX
-                className={`w-6 h-6 ${showBackground ? 'text-navy' : 'text-white'}`}
+                className={`w-7 h-7 sm:w-8 sm:h-8 ${showBackground ? 'text-navy' : 'text-white'}`}
               />
             ) : (
               <HiMenu
-                className={`w-6 h-6 ${showBackground ? 'text-navy' : 'text-white'}`}
+                className={`w-7 h-7 sm:w-8 sm:h-8 ${showBackground ? 'text-navy' : 'text-white'}`}
               />
             )}
           </button>
@@ -139,44 +140,57 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            className="lg:hidden fixed inset-0 top-20 bg-navy/98 backdrop-blur-lg"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex flex-col items-center justify-center h-full gap-8 pb-20">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <Link
-                    href={link.href}
-                    className={`text-2xl font-display font-medium transition-colors ${
-                      pathname === link.href
-                        ? 'text-khalsa'
-                        : 'text-white hover:text-khalsa'
-                    }`}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+            />
+            {/* Menu Panel */}
+            <motion.div
+              className="lg:hidden fixed inset-y-0 right-0 top-20 w-full max-w-sm bg-navy/98 backdrop-blur-lg z-50 shadow-2xl overflow-y-auto"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            >
+              <div className="flex flex-col items-stretch h-full gap-4 pt-8 pb-24 px-6">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`block px-4 py-3 text-lg font-display font-medium rounded-lg transition-colors ${
+                        pathname === link.href
+                          ? 'bg-khalsa/20 text-khalsa border-l-4 border-khalsa'
+                          : 'text-white hover:bg-white/10 hover:text-khalsa'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                  className="pt-4"
+                >
+                  <Button href="/join" size="lg" className="w-full justify-center">
+                    Join SSA
+                  </Button>
                 </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
-              >
-                <Button href="/join" size="lg">
-                  Join SSA
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

@@ -17,7 +17,7 @@ export default function ConstitutionSection({
 
   return (
     <motion.section
-      className="py-24 bg-navy relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-24 bg-navy relative overflow-hidden"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -47,8 +47,8 @@ export default function ConstitutionSection({
         }}
       />
 
-      {/* Floating Khanda Symbols */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Floating Khanda Symbols - Hidden on mobile */}
+      <div className="absolute inset-0 overflow-hidden hidden md:block">
         <motion.div
           className="absolute top-10 right-10 opacity-10"
           animate={{
@@ -92,13 +92,13 @@ export default function ConstitutionSection({
         </motion.div>
       </div>
 
-      {/* Glowing Accents */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-khalsa/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-softblue/15 rounded-full blur-3xl" />
+      {/* Glowing Accents - Hidden on mobile */}
+      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-khalsa/20 rounded-full blur-3xl hidden md:block" />
+      <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-softblue/15 rounded-full blur-3xl hidden md:block" />
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
-          className="relative p-8 md:p-12 rounded-3xl overflow-hidden"
+          className="relative p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl overflow-hidden"
           whileHover={{ scale: 1.02, rotateY: 2 }}
           transition={{ duration: 0.3 }}
           style={{ perspective: '1000px' }}
@@ -132,22 +132,22 @@ export default function ConstitutionSection({
           <div className="relative z-10">
             {/* Icon with Glow Effect */}
             <motion.div
-              className="relative w-24 h-24 mb-8 mx-auto"
+              className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-6 sm:mb-8 mx-auto"
               initial={{ scale: 0, rotate: -180 }}
               whileInView={{ scale: 1, rotate: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, type: 'spring' }}
             >
               {/* Glow behind icon */}
-              <div className="absolute inset-0 bg-khalsa/30 rounded-3xl blur-xl" />
-              <div className="relative w-24 h-24 gradient-gold rounded-3xl flex items-center justify-center shadow-2xl border-2 border-khalsa/50">
-                <FaFilePdf className="w-12 h-12 text-navy" />
+              <div className="absolute inset-0 bg-khalsa/30 rounded-2xl sm:rounded-3xl blur-xl" />
+              <div className="relative w-full h-full gradient-gold rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl border-2 border-khalsa/50">
+                <FaFilePdf className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-navy" />
               </div>
             </motion.div>
 
             {/* Title */}
             <motion.h2
-              className="text-4xl md:text-5xl font-display font-bold text-white text-center mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white text-center mb-3 sm:mb-4 px-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -160,7 +160,7 @@ export default function ConstitutionSection({
 
             {/* Subtitle */}
             <motion.p
-              className="text-white/90 text-center mb-10 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+              className="text-white/90 text-center mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed px-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -171,7 +171,7 @@ export default function ConstitutionSection({
 
             {/* Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-6"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 sm:gap-6 px-2"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -182,28 +182,28 @@ export default function ConstitutionSection({
                 href={constitutionUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center gap-3 bg-white text-navy font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-khalsa/50 transition-all duration-300 hover:bg-khalsa hover:text-white w-full sm:w-auto justify-center overflow-hidden"
-                whileHover={{ scale: 1.08, y: -2 }}
+                className="group relative flex items-center justify-center gap-2 sm:gap-3 bg-white text-navy font-bold px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 rounded-full shadow-2xl hover:shadow-khalsa/50 transition-all duration-300 hover:bg-khalsa hover:text-white w-full sm:w-auto overflow-hidden text-sm sm:text-base md:text-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {/* Button glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-khalsa/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <FaExternalLinkAlt className="w-5 h-5 relative z-10 group-hover:rotate-45 transition-transform duration-300" />
-                <span className="relative z-10 text-lg">View Constitution</span>
+                <FaExternalLinkAlt className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:rotate-45 transition-transform duration-300" />
+                <span className="relative z-10">View Constitution</span>
               </motion.a>
 
               {/* Download Button */}
               <motion.a
                 href={constitutionUrl}
                 download
-                className="group relative flex items-center gap-3 gradient-gold text-navy font-bold px-10 py-5 rounded-full shadow-2xl hover:shadow-khalsa/50 transition-all duration-300 w-full sm:w-auto justify-center overflow-hidden border-2 border-khalsa/30"
-                whileHover={{ scale: 1.08, y: -2 }}
+                className="group relative flex items-center justify-center gap-2 sm:gap-3 gradient-gold text-navy font-bold px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 rounded-full shadow-2xl hover:shadow-khalsa/50 transition-all duration-300 w-full sm:w-auto overflow-hidden border-2 border-khalsa/30 text-sm sm:text-base md:text-lg"
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {/* Button glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-khalsa/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <FaDownload className="w-5 h-5 relative z-10 group-hover:translate-y-1 transition-transform duration-300" />
-                <span className="relative z-10 text-lg">Download PDF</span>
+                <FaDownload className="w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:translate-y-1 transition-transform duration-300" />
+                <span className="relative z-10">Download PDF</span>
               </motion.a>
             </motion.div>
 

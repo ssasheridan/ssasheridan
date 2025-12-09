@@ -50,7 +50,7 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
           transition={{ duration: 0.2 }}
         >
           {/* Image */}
-          <div className="relative h-48 overflow-hidden">
+          <div className="relative h-40 sm:h-48 overflow-hidden">
             {bannerImageSrc ? (
               <motion.div
                 className="relative w-full h-full"
@@ -70,16 +70,16 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
               </div>
             )}
             
-            {/* Upcoming Badge */}
-            {event.isUpcoming && (
-              <motion.div 
-                className="absolute top-4 left-4 gradient-gold text-navy text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10"
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.2 }}
-              >
-                Upcoming
-              </motion.div>
-            )}
+                {/* Upcoming Badge */}
+                {event.isUpcoming && (
+                  <motion.div
+                    className="absolute top-2 left-2 sm:top-4 sm:left-4 gradient-gold text-navy text-[10px] sm:text-xs font-bold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-lg z-10"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Upcoming
+                  </motion.div>
+                )}
 
             {/* Hover Overlay */}
             <motion.div 
@@ -90,61 +90,61 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
             />
           </div>
 
-          {/* Content */}
-          <div className="p-6">
-            <motion.h3 
-              className="text-xl font-display font-bold text-navy mb-3 group-hover:text-khalsa transition-colors line-clamp-2"
-              whileHover={{ x: 4 }}
-              transition={{ duration: 0.2 }}
-            >
-              {event.title}
-            </motion.h3>
-
-            <div className="space-y-2 mb-4">
-              <div className="flex items-center gap-2 text-softblue text-sm">
-                <FaCalendarAlt className="w-4 h-4 text-khalsa flex-shrink-0" />
-                <span>{formattedDate} at {formattedTime}</span>
-              </div>
-
-              {event.location && (
-                <div className="flex items-center gap-2 text-softblue text-sm">
-                  <FaMapMarkerAlt className="w-4 h-4 text-khalsa flex-shrink-0" />
-                  <span className="line-clamp-1">{event.location}</span>
-                </div>
-              )}
-            </div>
-
-            {event.description && (
-              <p className="text-softblue text-sm line-clamp-2 mb-4">
-                {event.description}
-              </p>
-            )}
-
-            <div className="flex items-center justify-between pt-4 border-t border-lightgrey-dark">
-              <motion.span 
-                className="text-khalsa font-medium text-sm group-hover:text-navy transition-colors inline-flex items-center gap-2"
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
-              >
-                View Details
-                <motion.span
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  →
-                </motion.span>
-              </motion.span>
-              
-              {event.youtubeLink && (
-                <motion.div
-                  whileHover={{ scale: 1.2, rotate: 5 }}
+              {/* Content */}
+              <div className="p-4 sm:p-6">
+                <motion.h3
+                  className="text-lg sm:text-xl font-display font-bold text-navy mb-2 sm:mb-3 group-hover:text-khalsa transition-colors line-clamp-2"
+                  whileHover={{ x: 4 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <FaYoutube className="w-5 h-5 text-red-500" />
-                </motion.div>
-              )}
-            </div>
-          </div>
+                  {event.title}
+                </motion.h3>
+
+                <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+                  <div className="flex items-start sm:items-center gap-2 text-softblue text-xs sm:text-sm">
+                    <FaCalendarAlt className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-khalsa flex-shrink-0 mt-0.5 sm:mt-0" />
+                    <span className="break-words">{formattedDate} at {formattedTime}</span>
+                  </div>
+
+                  {event.location && (
+                    <div className="flex items-start sm:items-center gap-2 text-softblue text-xs sm:text-sm">
+                      <FaMapMarkerAlt className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-khalsa flex-shrink-0 mt-0.5 sm:mt-0" />
+                      <span className="line-clamp-1 break-words">{event.location}</span>
+                    </div>
+                  )}
+                </div>
+
+                {event.description && (
+                  <p className="text-softblue text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4">
+                    {event.description}
+                  </p>
+                )}
+
+                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-lightgrey-dark">
+                  <motion.span
+                    className="text-khalsa font-medium text-xs sm:text-sm group-hover:text-navy transition-colors inline-flex items-center gap-1.5 sm:gap-2"
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    View Details
+                    <motion.span
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.span>
+
+                  {event.youtubeLink && (
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <FaYoutube className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" />
+                    </motion.div>
+                  )}
+                </div>
+              </div>
         </motion.div>
       </Link>
     </motion.article>
