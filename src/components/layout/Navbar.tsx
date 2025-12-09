@@ -65,8 +65,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+      <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pointer-events-auto">
+        <div className="flex items-center justify-between h-16 sm:h-20 relative">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
@@ -83,8 +83,8 @@ export default function Navbar() {
                 priority
               />
             </motion.div>
-            <div className="block">
-              {/* Main title: Sikh Students Association */}
+            <div className="block max-w-[calc(100vw-120px)] sm:max-w-none">
+              {/* Main title: Sikh Students Association - Always full text */}
               <p
                 className={`font-display font-bold leading-tight ${
                   // Mobile: White when transparent, navy when glassy. Desktop: Use scroll/page logic
@@ -97,18 +97,17 @@ export default function Navbar() {
                     : ''
                 } ${
                   // Text sizing: smaller on mobile, larger on desktop
-                  'text-xs sm:text-sm md:text-base lg:text-lg'
+                  'text-[10px] sm:text-xs md:text-sm lg:text-base'
                 } ${
                   // Add drop shadow when transparent for better visibility
                   !showMobileGlass ? 'drop-shadow-lg' : ''
                 }`}
               >
-                <span className="sm:hidden">SSA</span>
-                <span className="hidden sm:inline">Sikh Students Association</span>
+                Sikh Students Association
               </p>
-              {/* Subtitle: Sheridan (if space allows) */}
+              {/* Subtitle: Sheridan */}
               <p
-                className={`text-[9px] sm:text-[10px] md:text-xs leading-tight ${
+                className={`text-[8px] sm:text-[9px] md:text-[10px] leading-tight ${
                   // Mobile: White/80 when transparent, softblue when glassy. Desktop: Use scroll/page logic
                   showMobileGlass
                     ? 'text-softblue lg:text-white/70'
@@ -122,9 +121,7 @@ export default function Navbar() {
                   !showMobileGlass ? 'drop-shadow-md' : ''
                 }`}
               >
-                <span className="sm:hidden">Sheridan</span>
-                <span className="hidden sm:inline md:hidden">Sheridan</span>
-                <span className="hidden md:inline">Sheridan College</span>
+                Sheridan
               </p>
             </div>
           </Link>
@@ -159,10 +156,15 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 rounded-lg transition-colors z-50 relative"
-            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg transition-colors z-[110] relative pointer-events-auto"
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              setIsOpen(!isOpen)
+            }}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
+            style={{ zIndex: 110 }}
           >
             {isOpen ? (
               <HiX
