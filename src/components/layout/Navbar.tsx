@@ -51,7 +51,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
         // Mobile: Transparent at top, translucent when scrolled. Desktop: Use scroll/page logic
         showMobileGlass
           ? 'bg-white/70 backdrop-blur-md shadow-sm lg:bg-transparent lg:backdrop-blur-none lg:shadow-none'
@@ -61,7 +61,7 @@ export default function Navbar() {
           ? 'lg:bg-white/95 lg:backdrop-blur-lg lg:shadow-lg'
           : ''
       }`}
-      initial={{ y: -100 }}
+      initial={{ y: 0 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -84,7 +84,7 @@ export default function Navbar() {
               />
             </motion.div>
             <div className="block">
-              {/* Mobile: Show "SSA, Sheridan" on small screens, full text on larger */}
+              {/* Main title: Sikh Students Association */}
               <p
                 className={`font-display font-bold leading-tight ${
                   // Mobile: White when transparent, navy when glassy. Desktop: Use scroll/page logic
@@ -97,19 +97,18 @@ export default function Navbar() {
                     : ''
                 } ${
                   // Text sizing: smaller on mobile, larger on desktop
-                  'text-sm sm:text-base md:text-lg'
+                  'text-xs sm:text-sm md:text-base lg:text-lg'
                 } ${
                   // Add drop shadow when transparent for better visibility
                   !showMobileGlass ? 'drop-shadow-lg' : ''
                 }`}
               >
-                <span className="sm:hidden">SSA, Sheridan</span>
-                <span className="hidden sm:inline md:hidden">SSA Sheridan</span>
-                <span className="hidden md:inline">Sikh Students Association, Sheridan</span>
+                <span className="sm:hidden">SSA</span>
+                <span className="hidden sm:inline">Sikh Students Association</span>
               </p>
-              {/* Subtitle only on larger mobile screens and desktop */}
+              {/* Subtitle: Sheridan (if space allows) */}
               <p
-                className={`hidden sm:block text-[10px] sm:text-xs ${
+                className={`text-[9px] sm:text-[10px] md:text-xs leading-tight ${
                   // Mobile: White/80 when transparent, softblue when glassy. Desktop: Use scroll/page logic
                   showMobileGlass
                     ? 'text-softblue lg:text-white/70'
@@ -123,7 +122,9 @@ export default function Navbar() {
                   !showMobileGlass ? 'drop-shadow-md' : ''
                 }`}
               >
-                Empowering Students, Celebrating Sikhi
+                <span className="sm:hidden">Sheridan</span>
+                <span className="hidden sm:inline md:hidden">Sheridan</span>
+                <span className="hidden md:inline">Sheridan College</span>
               </p>
             </div>
           </Link>
@@ -216,7 +217,18 @@ export default function Navbar() {
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               style={{ top: 0 }}
             >
-              <div className="flex flex-col items-stretch h-full gap-4 pt-20 sm:pt-24 pb-24 px-6">
+              {/* Close Button inside Menu Panel */}
+              <div className="sticky top-0 bg-navy/98 backdrop-blur-lg z-10 flex justify-end p-4 border-b border-white/10">
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
+                  aria-label="Close menu"
+                >
+                  <HiX className="w-6 h-6 text-white" />
+                </button>
+              </div>
+              
+              <div className="flex flex-col items-stretch h-full gap-4 pt-4 pb-24 px-6">
                 {navLinks.map((link, index) => (
                   <motion.div
                     key={link.href}
