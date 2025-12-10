@@ -18,29 +18,29 @@ export default function Hero({
   joinLink = 'https://forms.office.com/r/ackW8bMdtn',
 }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy py-8 sm:py-0">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
           src="/banners/Banner_Logo.png"
           alt="SSA Sheridan Background"
           fill
-          className="object-contain md:object-cover opacity-30 md:opacity-60 object-center"
+          className="object-contain md:object-cover opacity-20 md:opacity-60 object-center scale-75 md:scale-100"
           priority
           quality={90}
           sizes="100vw"
         />
         {/* Dark overlay for text readability - stronger on mobile */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/80 via-navy/75 to-navy-light/75 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/85 via-navy/80 to-navy-light/80 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
       </div>
       
       {/* Pattern Overlay */}
       <div 
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-5 md:opacity-5"
         style={{
           backgroundImage: `url('/patterns/Khanda_Pattern.png')`,
           backgroundRepeat: 'repeat',
-          backgroundSize: '300px 300px',
+          backgroundSize: 'min(200px, 50vw) min(200px, 50vw)',
         }}
       />
       
@@ -140,11 +140,12 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 md:pt-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 md:pt-32 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="space-y-6 sm:space-y-8"
         >
           {/* Ik Onkar Symbol */}
           <motion.p
@@ -192,15 +193,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
+              className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 mb-12 sm:mb-20 px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="lg" className="glow-gold" external>
+              <Button href={joinLink} size="lg" className="glow-gold text-base sm:text-lg" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="lg">
+              <Button href="/events" variant="outline" size="lg" className="text-base sm:text-lg">
                 Explore Events
               </Button>
             </motion.div>
