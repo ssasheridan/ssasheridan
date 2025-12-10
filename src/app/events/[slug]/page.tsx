@@ -9,6 +9,7 @@ import { urlFor } from '@/sanity/client'
 import { Event } from '@/types'
 import GalleryGrid from '@/components/gallery/GalleryGrid'
 import Button from '@/components/ui/Button'
+import YouTubeVideoEmbed from '@/components/embeds/YouTubeVideoEmbed'
 
 export const revalidate = 60
 
@@ -149,47 +150,7 @@ export default async function EventPage({ params }: Props) {
                 <FaYoutube className="text-red-500" />
                 Watch the Event
               </h2>
-              {(() => {
-                const videoId = extractYouTubeId(event.youtubeLink)
-                // Check if we got a valid video ID (not the original URL)
-                const isValidId = videoId && videoId.length === 11 && !videoId.includes('http') && !videoId.includes('youtube') && !videoId.includes('youtu.be')
-                
-                if (isValidId) {
-                  return (
-                    <div className="aspect-video rounded-2xl overflow-hidden shadow-xl">
-                      <iframe
-                        src={`https://www.youtube.com/embed/${videoId}?rel=0`}
-                        title={event.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full"
-                      />
-                    </div>
-                  )
-                } else {
-                  // If we can't extract a valid ID, show a clickable link button
-                  return (
-                    <div className="glass-card p-8 text-center rounded-2xl">
-                      <FaYoutube className="w-16 h-16 text-red-500 mx-auto mb-4" />
-                      <h3 className="text-xl font-display font-bold text-navy mb-2">
-                        Watch on YouTube
-                      </h3>
-                      <p className="text-softblue mb-6">
-                        Click the button below to watch this event on YouTube.
-                      </p>
-                      <Button 
-                        href={event.youtubeLink} 
-                        size="lg" 
-                        external
-                        className="inline-flex items-center gap-2"
-                      >
-                        <FaYoutube />
-                        Watch Video
-                      </Button>
-                    </div>
-                  )
-                }
-              })()}
+              <YouTubeVideoEmbed url={event.youtubeLink} title={event.title} />
             </div>
           )}
 
@@ -225,41 +186,4 @@ export default async function EventPage({ params }: Props) {
   )
 }
 
-function extractYouTubeId(url: string): string {
-  if (!url) return ''
-  
-  // Clean up the URL - remove any whitespace
-  const cleanUrl = url.trim()
-  
-  // Comprehensive patterns for various YouTube URL formats
-  const patterns = [
-    // Standard: https://www.youtube.com/watch?v=VIDEO_ID
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([a-zA-Z0-9_-]{11})/,
-    // Shortened: https://youtu.be/VIDEO_ID
-    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
-    // Embed: https://www.youtube.com/embed/VIDEO_ID
-    /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
-    // Mobile: https://m.youtube.com/watch?v=VIDEO_ID
-    /m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
-    // Just the video ID (if someone enters just the ID)
-    /^([a-zA-Z0-9_-]{11})$/,
-  ]
-
-  for (const pattern of patterns) {
-    const match = cleanUrl.match(pattern)
-    if (match && match[1]) {
-      return match[1]
-    }
-  }
-
-  // If no pattern matches, try to extract any 11-character alphanumeric sequence
-  // (YouTube video IDs are always 11 characters)
-  const idMatch = cleanUrl.match(/[a-zA-Z0-9_-]{11}/)
-  if (idMatch) {
-    return idMatch[0]
-  }
-
-  // Return empty string if we can't extract a valid ID
-  return ''
-}
 
