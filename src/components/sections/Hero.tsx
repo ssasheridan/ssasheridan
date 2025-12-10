@@ -22,7 +22,7 @@ export default function Hero({
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
-          src="/banners/Banner_Logo.png"
+          src="/banners/Banner_khanda.png"
           alt="SSA Sheridan Background"
           fill
           className="object-cover opacity-60"
@@ -59,8 +59,8 @@ export default function Hero({
           }}
         >
           <Image
-            src="/banners/Banner_Logo.png"
-            alt="SSA Logo"
+            src="/banners/Banner_khanda.png"
+            alt="Khanda Symbol"
             width={150}
             height={150}
             className="object-contain drop-shadow-lg"
@@ -80,8 +80,8 @@ export default function Hero({
           }}
         >
           <Image
-            src="/banners/Banner_Logo.png"
-            alt="SSA Logo"
+            src="/banners/Banner_khanda.png"
+            alt="Khanda Symbol"
             width={200}
             height={200}
             className="object-contain drop-shadow-lg"
@@ -101,8 +101,8 @@ export default function Hero({
           }}
         >
           <Image
-            src="/banners/Banner_Logo.png"
-            alt="SSA Logo"
+            src="/banners/Banner_khanda.png"
+            alt="Khanda Symbol"
             width={180}
             height={180}
             className="object-contain drop-shadow-lg"
