@@ -25,16 +25,13 @@ export default function Hero({
           src="/banners/Banner_Logo.png"
           alt="SSA Sheridan Background"
           fill
-          className="object-contain md:object-cover opacity-60 md:opacity-60"
+          className="hero-bg-image opacity-60"
           priority
           quality={90}
           sizes="100vw"
-          style={{
-            objectPosition: 'center center',
-          }}
         />
-        {/* Dark overlay for text readability - lighter on mobile to show logo better */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/60 via-navy/50 to-navy-light/60 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/70 via-navy/60 to-navy-light/70" />
       </div>
       
       {/* Pattern Overlay */}
@@ -151,7 +148,7 @@ export default function Hero({
         >
           {/* Ik Onkar Symbol */}
           <motion.p
-            className="text-6xl sm:text-7xl md:text-8xl text-khalsa mb-4 sm:mb-6 font-serif"
+            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-khalsa mb-4 sm:mb-6 font-serif"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -174,7 +171,7 @@ export default function Hero({
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl sm:text-2xl md:text-3xl text-white/80 mb-3 sm:mb-4 font-light px-2"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-3 sm:mb-4 font-light px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
