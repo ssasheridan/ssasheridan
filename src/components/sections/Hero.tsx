@@ -18,29 +18,29 @@ export default function Hero({
   joinLink = 'https://forms.office.com/r/ackW8bMdtn',
 }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy py-8 sm:py-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
           src="/banners/Banner_Logo.png"
           alt="SSA Sheridan Background"
           fill
-          className="object-contain md:object-cover opacity-20 md:opacity-60 object-center scale-75 md:scale-100"
+          className="object-contain md:object-cover opacity-25 md:opacity-60 object-center scale-90 md:scale-100"
           priority
           quality={90}
           sizes="100vw"
         />
         {/* Dark overlay for text readability - stronger on mobile */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/85 via-navy/80 to-navy-light/80 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/85 via-navy/75 to-navy-light/80 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
       </div>
       
       {/* Pattern Overlay */}
       <div 
-        className="absolute inset-0 opacity-5 md:opacity-5"
+        className="absolute inset-0 opacity-[0.03] md:opacity-5"
         style={{
           backgroundImage: `url('/patterns/Khanda_Pattern.png')`,
           backgroundRepeat: 'repeat',
-          backgroundSize: 'min(200px, 50vw) min(200px, 50vw)',
+          backgroundSize: 'min(250px, 60vw) min(250px, 60vw)',
         }}
       />
       
@@ -140,7 +140,7 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 md:pt-32 pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 text-center pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -159,12 +159,12 @@ export default function Hero({
 
           {/* Main Title */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-5 sm:mb-6 leading-[1.1] md:leading-tight px-4"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-5 sm:mb-6 leading-[1.15] md:leading-tight px-4 drop-shadow-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <span className="block drop-shadow-2xl">{title.split(',')[0]}</span>
+            <span className="block">{title.split(',')[0]}</span>
             <span className="block text-khalsa drop-shadow-2xl mt-2">
               {title.includes(',') ? title.split(',')[1] : ''}
             </span>
@@ -172,7 +172,7 @@ export default function Hero({
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl sm:text-2xl md:text-3xl text-white/90 mb-4 sm:mb-5 font-light px-4 drop-shadow-lg"
+            className="text-xl sm:text-2xl md:text-3xl text-white/95 mb-4 sm:mb-5 font-light px-4 drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -193,15 +193,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 mb-12 sm:mb-20 px-4"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-12 sm:mb-20 px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="lg" className="glow-gold text-base sm:text-lg" external>
+              <Button href={joinLink} size="lg" className="glow-gold w-full sm:w-auto text-base sm:text-lg px-8 py-4" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="lg" className="text-base sm:text-lg">
+              <Button href="/events" variant="outline" size="lg" className="w-full sm:w-auto text-base sm:text-lg px-8 py-4">
                 Explore Events
               </Button>
             </motion.div>
