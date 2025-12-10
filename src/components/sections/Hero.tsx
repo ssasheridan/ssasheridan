@@ -25,22 +25,21 @@ export default function Hero({
           src="/banners/Banner_Logo.png"
           alt="SSA Sheridan Background"
           fill
-          className="object-contain md:object-cover opacity-25 md:opacity-60 object-center scale-90 md:scale-100"
+          className="object-cover opacity-60"
           priority
           quality={90}
-          sizes="100vw"
         />
-        {/* Dark overlay for text readability - stronger on mobile */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/85 via-navy/75 to-navy-light/80 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/70 via-navy/60 to-navy-light/70" />
       </div>
       
       {/* Pattern Overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.03] md:opacity-5"
+        className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `url('/patterns/Khanda_Pattern.png')`,
           backgroundRepeat: 'repeat',
-          backgroundSize: 'min(250px, 60vw) min(250px, 60vw)',
+          backgroundSize: '300px 300px',
         }}
       />
       
@@ -140,16 +139,15 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-8 text-center pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="space-y-6 sm:space-y-8"
         >
           {/* Ik Onkar Symbol */}
           <motion.p
-            className="text-6xl sm:text-7xl md:text-8xl text-khalsa mb-6 sm:mb-8 font-serif drop-shadow-2xl"
+            className="text-5xl sm:text-6xl md:text-7xl text-khalsa mb-4 sm:mb-6 font-serif"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -159,20 +157,20 @@ export default function Hero({
 
           {/* Main Title */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-5 sm:mb-6 leading-[1.15] md:leading-tight px-4 drop-shadow-2xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <span className="block">{title.split(',')[0]}</span>
-            <span className="block text-khalsa drop-shadow-2xl mt-2">
+            <span className="block text-khalsa drop-shadow-lg">
               {title.includes(',') ? title.split(',')[1] : ''}
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl sm:text-2xl md:text-3xl text-white/95 mb-4 sm:mb-5 font-light px-4 drop-shadow-lg"
+            className="text-lg sm:text-xl md:text-2xl text-white/80 mb-3 sm:mb-4 font-light px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -182,7 +180,7 @@ export default function Hero({
 
           {/* Tagline */}
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-khalsa font-semibold mb-8 sm:mb-10 px-4 drop-shadow-lg"
+            className="text-base sm:text-lg text-khalsa font-medium mb-6 sm:mb-10 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -193,15 +191,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-12 sm:mb-20 px-4"
+              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="lg" className="glow-gold w-full sm:w-auto text-base sm:text-lg px-8 py-4" external>
+              <Button href={joinLink} size="lg" className="glow-gold" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="lg" className="w-full sm:w-auto text-base sm:text-lg px-8 py-4">
+              <Button href="/events" variant="outline" size="lg">
                 Explore Events
               </Button>
             </motion.div>
