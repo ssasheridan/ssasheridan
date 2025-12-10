@@ -22,7 +22,7 @@ export default function Hero({
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
-          src="/banners/Banner_Logo.png"
+          src="/banners/Banner_khanda.png"
           alt="SSA Sheridan Background"
           fill
           className="hero-bg-image opacity-60"
@@ -60,8 +60,8 @@ export default function Hero({
           }}
         >
           <Image
-            src="/banners/Banner_Logo.png"
-            alt="SSA Logo"
+            src="/banners/Banner_khanda.png"
+            alt="Khanda Symbol"
             width={150}
             height={150}
             className="object-contain drop-shadow-lg"
@@ -81,8 +81,8 @@ export default function Hero({
           }}
         >
           <Image
-            src="/banners/Banner_Logo.png"
-            alt="SSA Logo"
+            src="/banners/Banner_khanda.png"
+            alt="Khanda Symbol"
             width={200}
             height={200}
             className="object-contain drop-shadow-lg"
@@ -102,8 +102,8 @@ export default function Hero({
           }}
         >
           <Image
-            src="/banners/Banner_Logo.png"
-            alt="SSA Logo"
+            src="/banners/Banner_khanda.png"
+            alt="Khanda Symbol"
             width={180}
             height={180}
             className="object-contain drop-shadow-lg"
@@ -140,7 +140,7 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ export default function Hero({
         >
           {/* Ik Onkar Symbol */}
           <motion.p
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-khalsa mb-4 sm:mb-6 font-serif"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-khalsa mb-4 sm:mb-6 font-serif"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
