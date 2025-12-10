@@ -21,14 +21,14 @@ export default function Hero({
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
-        {/* Mobile: object-contain with padding to focus on graphics, Desktop: object-cover */}
+        {/* Mobile: object-contain with padding to show full logo elegantly, Desktop: object-cover */}
         <div className="absolute inset-0 md:inset-0">
           <div className="absolute inset-4 sm:inset-6 md:inset-0">
             <Image
               src="/banners/Banner_Logo.png"
               alt="SSA Sheridan Background"
               fill
-              className="object-contain md:object-cover opacity-60"
+              className="object-contain md:object-cover opacity-50 md:opacity-60"
               priority
               quality={90}
               sizes="100vw"
@@ -38,8 +38,8 @@ export default function Hero({
             />
           </div>
         </div>
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/70 via-navy/60 to-navy-light/70" />
+        {/* Dark overlay for text readability - lighter on mobile to show logo better */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/60 via-navy/50 to-navy-light/60 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
       </div>
       
       {/* Pattern Overlay */}
