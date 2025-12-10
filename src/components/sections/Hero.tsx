@@ -205,10 +205,10 @@ export default function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="md" className="glow-gold text-xs sm:text-sm md:text-base px-4 sm:px-5 md:px-8 whitespace-nowrap flex-shrink-0" external>
+              <Button href={joinLink} size="sm" className="glow-gold !px-3 sm:!px-5 md:!px-8 !text-xs sm:!text-sm md:!text-base whitespace-nowrap flex-shrink-0" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="md" className="text-xs sm:text-sm md:text-base px-4 sm:px-5 md:px-8 whitespace-nowrap flex-shrink-0">
+              <Button href="/events" variant="outline" size="sm" className="!px-3 sm:!px-5 md:!px-8 !text-xs sm:!text-sm md:!text-base whitespace-nowrap flex-shrink-0">
                 Explore Events
               </Button>
             </motion.div>
