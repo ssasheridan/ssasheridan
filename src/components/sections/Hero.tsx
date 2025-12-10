@@ -21,25 +21,16 @@ export default function Hero({
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
-        {/* Mobile: object-contain with padding to show full logo elegantly, Desktop: object-cover */}
-        <div className="absolute inset-0 md:inset-0">
-          <div className="absolute inset-4 sm:inset-6 md:inset-0">
-            <Image
-              src="/banners/Banner_Logo.png"
-              alt="SSA Sheridan Background"
-              fill
-              className="object-contain md:object-cover opacity-50 md:opacity-60"
-              priority
-              quality={90}
-              sizes="100vw"
-              style={{
-                objectPosition: 'center center',
-              }}
-            />
-          </div>
-        </div>
-        {/* Dark overlay for text readability - lighter on mobile to show logo better */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/60 via-navy/50 to-navy-light/60 md:from-navy-dark/70 md:via-navy/60 md:to-navy-light/70" />
+        <Image
+          src="/banners/Banner_Logo.png"
+          alt="SSA Sheridan Background"
+          fill
+          className="object-cover opacity-60"
+          priority
+          quality={90}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-dark/70 via-navy/60 to-navy-light/70" />
       </div>
       
       {/* Pattern Overlay */}
@@ -148,7 +139,7 @@ export default function Hero({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 text-center pt-20 sm:pt-24 md:pt-32 pb-20 sm:pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -200,15 +191,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-row items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-12 sm:mb-20 px-2 flex-nowrap"
+              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Button href={joinLink} size="sm" className="glow-gold !px-3 sm:!px-5 md:!px-8 !text-xs sm:!text-sm md:!text-base whitespace-nowrap flex-shrink-0" external>
+              <Button href={joinLink} size="lg" className="glow-gold" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="sm" className="!px-3 sm:!px-5 md:!px-8 !text-xs sm:!text-sm md:!text-base whitespace-nowrap flex-shrink-0">
+              <Button href="/events" variant="outline" size="lg">
                 Explore Events
               </Button>
             </motion.div>
