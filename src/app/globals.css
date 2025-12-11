@@ -152,7 +152,7 @@
   .hero-bg-image {
     object-fit: cover !important;
     object-position: center 30% !important;
-    transform: scale(1.2) !important;
+    transform: scale(1.4) !important;
   }
 }
 

@@ -18,7 +18,7 @@ export default function Hero({
   joinLink = 'https://forms.office.com/r/ackW8bMdtn',
 }: HeroProps) {
   return (
-    <section className="relative min-h-[75vh] sm:min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy">
+    <section className="relative min-h-screen sm:min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
