@@ -22,7 +22,7 @@ export default function Hero({
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
-          src="/banners/Banner_khanda.png"
+          src="/banners/Banner_Updated.png"
           alt="SSA Sheridan Background"
           fill
           className="hero-bg-image opacity-60"
