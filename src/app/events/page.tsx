@@ -46,7 +46,7 @@ export default async function EventsPage() {
           />
 
           {upcomingEvents && upcomingEvents.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 justify-items-center">
               {upcomingEvents.map((event, index) => (
                 <EventCard key={event._id} event={event} index={index} />
               ))}
@@ -74,7 +74,7 @@ export default async function EventsPage() {
           />
 
           {pastEvents && pastEvents.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 justify-items-center">
               {pastEvents.map((event, index) => (
                 <EventCard key={event._id} event={event} index={index} />
               ))}

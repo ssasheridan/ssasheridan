@@ -37,14 +37,14 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group h-full flex"
+      className="group h-full flex w-full max-w-sm"
     >
       <Link 
         href={`/events/${event.slug?.current}`}
         className="block w-full h-full"
       >
         <motion.div 
-          className="glass-card overflow-hidden transition-all duration-300 h-full cursor-pointer flex flex-col"
+          className="glass-card overflow-hidden transition-all duration-300 h-full cursor-pointer flex flex-col w-full"
           whileHover={{ scale: 1.03, y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
           whileTap={{ scale: 0.97 }}
           transition={{ duration: 0.2 }}
