@@ -139,9 +139,9 @@ export default function Hero({
         />
       </div>
 
-      {/* Ik Onkar Symbol - Top Right Corner */}
+      {/* Ik Onkar Symbol - Top Right Corner (Desktop) / Center Above Title (Mobile Portrait) */}
       <motion.p
-        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 z-[50] text-xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        className="absolute top-8 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 z-[50] text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -159,15 +159,15 @@ export default function Hero({
         >
           {/* Main Title */}
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2 pt-10 sm:pt-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="block whitespace-nowrap text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+            <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
               {title.split(',')[0]}
             </span>
-            <span className="block text-khalsa drop-shadow-lg text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0">
+            <span className="block text-khalsa drop-shadow-lg text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0">
               {title.includes(',') ? title.split(',')[1].trim() : ''}
             </span>
           </motion.h1>
@@ -195,7 +195,7 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-20 px-2 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-20 px-2 w-full sm:w-auto mt-6 sm:mt-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
