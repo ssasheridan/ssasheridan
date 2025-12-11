@@ -141,7 +141,7 @@ export default function Hero({
 
       {/* Ik Onkar Symbol - Top Right Corner (Desktop) */}
       <motion.p
-        className="absolute top-8 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 hidden sm:block z-[50] text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 hidden sm:block z-[60] text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
