@@ -18,7 +18,7 @@ export default function Hero({
   joinLink = 'https://forms.office.com/r/ackW8bMdtn',
 }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy">
+    <section className="relative min-h-[75vh] sm:min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
@@ -141,7 +141,7 @@ export default function Hero({
 
       {/* Ik Onkar Symbol - Top Right Corner */}
       <motion.p
-        className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-12 md:right-12 z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 z-10 text-xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -150,7 +150,7 @@ export default function Hero({
       </motion.p>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 sm:pt-20 md:pt-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -194,7 +194,7 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
+              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-20 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
