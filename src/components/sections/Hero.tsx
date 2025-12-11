@@ -139,6 +139,16 @@ export default function Hero({
         />
       </div>
 
+      {/* Ik Onkar Symbol - Top Right Corner */}
+      <motion.p
+        className="absolute top-6 right-6 sm:top-8 sm:right-8 md:top-12 md:right-12 z-10 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        ੴ
+      </motion.p>
+
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24">
         <motion.div
@@ -146,22 +156,12 @@ export default function Hero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Ik Onkar Symbol */}
-          <motion.p
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-khalsa mb-4 sm:mb-6 font-serif"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            ੴ
-          </motion.p>
-
           {/* Main Title */}
           <motion.h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
             <span className="block">{title.split(',')[0]}</span>
             <span className="block text-khalsa drop-shadow-lg">
@@ -174,7 +174,7 @@ export default function Hero({
             className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-3 sm:mb-4 font-light px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             {subtitle}
           </motion.p>
@@ -184,7 +184,7 @@ export default function Hero({
             className="text-lg sm:text-xl md:text-2xl text-khalsa font-medium mb-6 sm:mb-10 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             Your Sheridan Support Hub
           </motion.p>
@@ -195,7 +195,7 @@ export default function Hero({
               className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-20 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Button href={joinLink} size="lg" className="glow-gold" external>
                 Join SSA Today
