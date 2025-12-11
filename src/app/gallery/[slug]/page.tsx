@@ -59,7 +59,7 @@ export default async function GalleryDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="page-transition">
+    <div className="page-transition animate-in fade-in duration-300">
       <PageHero title={gallery.title} />
 
       <section className="py-16 bg-white">
@@ -67,13 +67,16 @@ export default async function GalleryDetailPage({ params }: Props) {
           <Link
             href="/gallery"
             className="inline-flex items-center gap-2 text-navy hover:text-khalsa mb-8 transition-colors"
+            prefetch={true}
           >
             <FaArrowLeft />
             Back to Gallery
           </Link>
 
           {gallery.images && gallery.images.length > 0 ? (
-            <GalleryGrid images={gallery.images} columns={3} />
+            <div className="gallery-grid-fade-in">
+              <GalleryGrid images={gallery.images} columns={3} />
+            </div>
           ) : (
             <div className="text-center py-16 glass-card rounded-2xl">
               <p className="text-5xl mb-4">📷</p>

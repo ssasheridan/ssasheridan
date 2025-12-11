@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FaImages } from 'react-icons/fa'
 import { Gallery } from '@/types'
 import { urlFor } from '@/sanity/client'
@@ -13,12 +15,25 @@ interface GalleryCardProps {
 }
 
 export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
+  const [isClicked, setIsClicked] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const router = useRouter()
   const imageCount = gallery.images?.length || 0
 
   const coverImageBuilder = gallery.coverImage ? urlFor(gallery.coverImage) : null
   const coverImageSrc = coverImageBuilder
     ? coverImageBuilder.width(600).height(400).url()
     : null
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsClicked(true)
+    
+    // Instant navigation after visual feedback
+    setTimeout(() => {
+      router.push(`/gallery/${gallery.slug?.current}`)
+    }, 150)
+  }
 
   return (
     <motion.article
@@ -28,12 +43,37 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <Link href={`/gallery/${gallery.slug?.current}`} className="block">
+      <Link 
+        href={`/gallery/${gallery.slug?.current}`} 
+        className="block"
+        prefetch={true}
+        onClick={handleClick}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <motion.div 
-          className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-300"
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.2 }}
+          className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer relative"
+          whileHover={{ y: -4, scale: 1.02 }}
+          whileTap={{ scale: 0.97, y: 0 }}
+          animate={isClicked ? { scale: 0.95 } : {}}
+          transition={{ 
+            duration: isClicked ? 0.15 : 0.2,
+            ease: 'easeOut'
+          }}
         >
+          {/* Click ripple effect */}
+          <AnimatePresence>
+            {isClicked && (
+              <motion.div
+                initial={{ scale: 0, opacity: 0.5 }}
+                animate={{ scale: 2, opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.4 }}
+                className="absolute inset-0 bg-khalsa/30 rounded-lg pointer-events-none z-10"
+                style={{ borderRadius: 'inherit' }}
+              />
+            )}
+          </AnimatePresence>
           {/* Image */}
           <div className="relative h-64 overflow-hidden">
             {coverImageSrc ? (
@@ -50,16 +90,19 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
             )}
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/60 to-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+            <div 
+              className={`absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/60 to-navy/30 flex items-end justify-center pb-6 transition-opacity duration-300 ${
+                isHovered || isClicked ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
               <motion.span
                 className="text-white font-semibold text-lg flex items-center gap-2"
-                initial={{ y: 10, opacity: 0 }}
-                whileHover={{ y: 0, opacity: 1 }}
+                animate={isHovered || isClicked ? { y: 0, opacity: 1 } : { y: 10, opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
                 View Gallery
                 <motion.span
-                  animate={{ x: [0, 4, 0] }}
+                  animate={isHovered ? { x: [0, 4, 0] } : { x: 0 }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                 >
                   →
