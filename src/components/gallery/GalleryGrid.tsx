@@ -96,15 +96,15 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
   }
 
   const gridCols = {
-    2: 'grid-cols-1 sm:grid-cols-2',
-    3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+    2: 'grid-cols-2 sm:grid-cols-2', // 2 columns on mobile and up
+    3: 'grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3', // 3 columns on all screens
+    4: 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4', // 2 on mobile, 3 on tablet, 4 on desktop
   }
 
   return (
     <>
       {/* Grid */}
-      <div className={`grid ${gridCols[columns]} gap-4`}>
+      <div className={`grid ${gridCols[columns]} gap-2 sm:gap-3 md:gap-4`}>
         {images.map((image, index) => {
           const imageUrl = urlFor(image)
           if (!imageUrl) return null
