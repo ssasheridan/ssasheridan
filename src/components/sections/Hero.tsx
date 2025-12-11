@@ -163,7 +163,7 @@ export default function Hero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="block whitespace-nowrap text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl landscape:text-xl">
+            <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl landscape:text-xl">
               {title.split(',')[0]}
             </span>
             <span className="block text-khalsa drop-shadow-lg text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0 landscape:text-xl">
@@ -190,25 +190,25 @@ export default function Hero({
           >
             Your Sheridan Support Hub
           </motion.p>
-
-          {/* CTA Buttons */}
-          {showCTA && (
-            <motion.div
-              className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-20 px-2 landscape:gap-2 landscape:mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <Button href={joinLink} size="lg" className="glow-gold" external>
-                Join SSA Today
-              </Button>
-              <Button href="/events" variant="outline" size="lg">
-                Explore Events
-              </Button>
-            </motion.div>
-          )}
         </motion.div>
       </div>
+
+      {/* CTA Buttons - Positioned at bottom of hero section */}
+      {showCTA && (
+        <motion.div
+          className="absolute bottom-16 sm:bottom-20 left-0 right-0 z-10 flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 px-4 landscape:bottom-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <Button href={joinLink} size="lg" className="glow-gold" external>
+            Join SSA Today
+          </Button>
+          <Button href="/events" variant="outline" size="lg">
+            Explore Events
+          </Button>
+        </motion.div>
+      )}
 
       {/* Scroll Indicator - Positioned relative to section, not content container */}
       <motion.div
