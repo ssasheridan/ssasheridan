@@ -28,8 +28,12 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group"
     >
-      <Link href={`/gallery/${gallery.slug?.current}`}>
-        <div className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-500">
+      <Link href={`/gallery/${gallery.slug?.current}`} className="block">
+        <motion.div 
+          className="glass-card overflow-hidden hover:shadow-2xl transition-all duration-300"
+          whileHover={{ y: -4 }}
+          transition={{ duration: 0.2 }}
+        >
           {/* Image */}
           <div className="relative h-64 overflow-hidden">
             {coverImageSrc ? (
@@ -37,7 +41,7 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
                 src={coverImageSrc}
                 alt={gallery.title}
                 fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700"
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
             ) : (
               <div className="w-full h-full gradient-navy flex items-center justify-center">
@@ -46,10 +50,21 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
             )}
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-8">
-              <span className="text-white font-medium">
-                View Gallery →
-              </span>
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/60 to-navy/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+              <motion.span
+                className="text-white font-semibold text-lg flex items-center gap-2"
+                initial={{ y: 10, opacity: 0 }}
+                whileHover={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                View Gallery
+                <motion.span
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  →
+                </motion.span>
+              </motion.span>
             </div>
 
             {/* Image Count Badge */}
@@ -61,11 +76,11 @@ export default function GalleryCard({ gallery, index = 0 }: GalleryCardProps) {
 
           {/* Content */}
           <div className="p-6">
-            <h3 className="text-xl font-display font-bold text-navy group-hover:text-khalsa transition-colors">
+            <h3 className="text-xl font-display font-bold text-navy group-hover:text-khalsa transition-colors duration-300">
               {gallery.title}
             </h3>
           </div>
-        </div>
+        </motion.div>
       </Link>
     </motion.article>
   )

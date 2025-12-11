@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiX, HiChevronLeft, HiChevronRight } from 'react-icons/hi'
@@ -14,6 +14,8 @@ interface GalleryGridProps {
 
 export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
 
   const openLightbox = (index: number) => setSelectedIndex(index)
   const closeLightbox = () => setSelectedIndex(null)
@@ -28,11 +30,57 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
     setSelectedIndex(selectedIndex === images.length - 1 ? 0 : selectedIndex + 1)
   }
 
+  // Handle Escape key globally
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedIndex !== null) {
+        closeLightbox()
+      }
+    }
+
+    if (selectedIndex !== null) {
+      document.addEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'hidden' // Prevent background scrolling
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [selectedIndex])
+
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') closeLightbox()
     if (e.key === 'ArrowLeft') goToPrevious()
     if (e.key === 'ArrowRight') goToNext()
+  }
+
+  // Swipe handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const distance = touchStartX.current - touchEndX.current
+    const minSwipeDistance = 50
+
+    if (distance > minSwipeDistance) {
+      // Swipe left - go to next
+      goToNext()
+    } else if (distance < -minSwipeDistance) {
+      // Swipe right - go to previous
+      goToPrevious()
+    }
+
+    touchStartX.current = null
+    touchEndX.current = null
   }
 
   const gridCols = {
@@ -55,9 +103,9 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ duration: 0.3, delay: index * 0.02 }}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-square overflow-hidden rounded-xl focus:outline-none focus:ring-2 focus:ring-khalsa"
+              className="group relative aspect-square overflow-hidden rounded-xl focus:outline-none focus:ring-2 focus:ring-khalsa cursor-pointer"
             >
               <Image
                 src={imageUrl.width(600).height(600).url()}
@@ -85,9 +133,13 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-dark/95 backdrop-blur-lg flex items-center justify-center"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[100] bg-dark/95 backdrop-blur-lg flex items-center justify-center"
             onClick={closeLightbox}
             onKeyDown={handleKeyDown}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
             tabIndex={0}
             role="dialog"
             aria-modal="true"
@@ -95,44 +147,55 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
           >
             {/* Close Button */}
             <button
-              onClick={closeLightbox}
-              className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation()
+                closeLightbox()
+              }}
+              className="absolute top-4 right-4 z-[110] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg"
               aria-label="Close lightbox"
             >
-              <HiX className="w-6 h-6 text-white" />
+              <HiX className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
             </button>
 
-            {/* Navigation */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                goToPrevious()
-              }}
-              className="absolute left-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              aria-label="Previous image"
-            >
-              <HiChevronLeft className="w-6 h-6 text-white" />
-            </button>
+            {/* Navigation Arrows */}
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToPrevious()
+                  }}
+                  className="absolute left-2 sm:left-4 z-[110] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg"
+                  aria-label="Previous image"
+                >
+                  <HiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </button>
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                goToNext()
-              }}
-              className="absolute right-4 z-10 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
-              aria-label="Next image"
-            >
-              <HiChevronRight className="w-6 h-6 text-white" />
-            </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToNext()
+                  }}
+                  className="absolute right-2 sm:right-4 z-[110] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 shadow-lg"
+                  aria-label="Next image"
+                >
+                  <HiChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                </button>
+              </>
+            )}
 
             {/* Image */}
             <motion.div
               key={selectedIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
               className="relative max-w-5xl max-h-[85vh] mx-4"
               onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               {(() => {
                 const lightboxImageBuilder = images[selectedIndex] ? urlFor(images[selectedIndex]) : null
