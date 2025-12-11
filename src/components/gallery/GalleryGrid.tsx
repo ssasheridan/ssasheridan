@@ -30,24 +30,36 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
     setSelectedIndex(selectedIndex === images.length - 1 ? 0 : selectedIndex + 1)
   }
 
-  // Handle Escape key globally
+  // Handle keyboard navigation globally (Arrow keys + Escape)
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && selectedIndex !== null) {
-        closeLightbox()
+    if (selectedIndex === null) return
+
+    const handleKeyboard = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedIndex(null)
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        setSelectedIndex(prev => {
+          if (prev === null) return null
+          return prev === 0 ? images.length - 1 : prev - 1
+        })
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        setSelectedIndex(prev => {
+          if (prev === null) return null
+          return prev === images.length - 1 ? 0 : prev + 1
+        })
       }
     }
 
-    if (selectedIndex !== null) {
-      document.addEventListener('keydown', handleEscape)
-      document.body.style.overflow = 'hidden' // Prevent background scrolling
-    }
+    document.addEventListener('keydown', handleKeyboard)
+    document.body.style.overflow = 'hidden' // Prevent background scrolling
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('keydown', handleKeyboard)
       document.body.style.overflow = 'unset'
     }
-  }, [selectedIndex])
+  }, [selectedIndex, images.length])
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -86,7 +98,7 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
   const gridCols = {
     2: 'grid-cols-1 sm:grid-cols-2',
     3: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
+    4: 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
   }
 
   return (

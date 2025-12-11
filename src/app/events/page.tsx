@@ -46,11 +46,9 @@ export default async function EventsPage() {
           />
 
           {upcomingEvents && upcomingEvents.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {upcomingEvents.map((event, index) => (
-                <div key={event._id} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1.33rem)] min-w-0 max-w-sm lg:max-w-none">
-                  <EventCard event={event} index={index} />
-                </div>
+                <EventCard key={event._id} event={event} index={index} />
               ))}
             </div>
           ) : (
@@ -76,11 +74,9 @@ export default async function EventsPage() {
           />
 
           {pastEvents && pastEvents.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {pastEvents.map((event, index) => (
-                <div key={event._id} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1.33rem)] min-w-0 max-w-sm lg:max-w-none">
-                  <EventCard event={event} index={index} />
-                </div>
+                <EventCard key={event._id} event={event} index={index} />
               ))}
             </div>
           ) : (

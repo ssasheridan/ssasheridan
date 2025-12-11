@@ -37,14 +37,14 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group"
+      className="group h-full flex"
     >
       <Link 
         href={`/events/${event.slug?.current}`}
-        className="block"
+        className="block w-full h-full"
       >
         <motion.div 
-          className="glass-card overflow-hidden transition-all duration-300 h-full cursor-pointer"
+          className="glass-card overflow-hidden transition-all duration-300 h-full cursor-pointer flex flex-col"
           whileHover={{ scale: 1.03, y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
           whileTap={{ scale: 0.97 }}
           transition={{ duration: 0.2 }}
@@ -91,7 +91,7 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
           </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-6 flex flex-col flex-grow">
                 <motion.h3
                   className="text-lg sm:text-xl font-display font-bold text-navy mb-2 sm:mb-3 group-hover:text-khalsa transition-colors line-clamp-2"
                   whileHover={{ x: 4 }}
@@ -115,12 +115,12 @@ export default function EventCard({ event, index = 0 }: EventCardProps) {
                 </div>
 
                 {event.description && (
-                  <p className="text-softblue text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4">
+                  <p className="text-softblue text-xs sm:text-sm line-clamp-2 mb-3 sm:mb-4 flex-grow">
                     {event.description}
                   </p>
                 )}
 
-                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-lightgrey-dark">
+                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-lightgrey-dark mt-auto">
                   <motion.span
                     className="text-khalsa font-medium text-xs sm:text-sm group-hover:text-navy transition-colors inline-flex items-center gap-1.5 sm:gap-2"
                     whileHover={{ x: 4 }}
