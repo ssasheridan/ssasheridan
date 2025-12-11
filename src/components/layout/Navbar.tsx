@@ -19,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isLandscape, setIsLandscape] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -27,6 +28,26 @@ export default function Navbar() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Detect mobile landscape orientation
+  useEffect(() => {
+    const checkOrientation = () => {
+      if (typeof window !== 'undefined') {
+        // Check if mobile (width < 1024px) and landscape (width > height)
+        const isMobileLandscape = window.innerWidth < 1024 && window.innerWidth > window.innerHeight
+        setIsLandscape(isMobileLandscape)
+      }
+    }
+
+    checkOrientation()
+    window.addEventListener('resize', checkOrientation)
+    window.addEventListener('orientationchange', checkOrientation)
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation)
+      window.removeEventListener('orientationchange', checkOrientation)
+    }
   }, [])
 
   useEffect(() => {
@@ -59,15 +80,19 @@ export default function Navbar() {
   const showBackgroundDesktop = !hasBannerPage || scrolled
   
   // Mobile: Show translucent/glassy effect when scrolled (but transparent at top)
-  // On home page, show subtle glassy effect even at top (mobile only)
+  // On home page portrait: show subtle glassy effect even at top
+  // On home page landscape: completely transparent at top
   const showMobileGlass = scrolled
+  const isMobileLandscapeHomeTop = isHomePage && isLandscape && !scrolled
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        // Mobile: On home page, show subtle glassy background even at top. When scrolled, show more opaque.
+        // Mobile: On home page, show subtle glassy background even at top (portrait). Landscape: completely transparent at top.
         // Desktop: Use scroll/page logic
-        isHomePage
+        isMobileLandscapeHomeTop
+          ? 'bg-transparent backdrop-blur-none shadow-none lg:bg-transparent'
+          : isHomePage
           ? showMobileGlass
             ? 'bg-white/70 backdrop-blur-md shadow-sm lg:bg-transparent lg:backdrop-blur-none lg:shadow-none'
             : 'bg-white/10 backdrop-blur-sm lg:bg-transparent'
@@ -105,9 +130,11 @@ export default function Navbar() {
               {/* Main title: Sikh Students Association - Always full text */}
               <p
                 className={`font-display font-bold leading-tight ${
-                  // Mobile: White when transparent, navy when glassy
+                  // Mobile: White when transparent (including landscape home top), navy when glassy
                   // Desktop: White when transparent, navy when background shown
-                  showMobileGlass
+                  isMobileLandscapeHomeTop || (!showMobileGlass && !showBackgroundDesktop)
+                    ? 'text-white'
+                    : showMobileGlass
                     ? 'text-navy'
                     : showBackgroundDesktop
                     ? 'lg:text-navy'
@@ -117,7 +144,7 @@ export default function Navbar() {
                   'text-sm sm:text-xs md:text-sm lg:text-base'
                 } ${
                   // Add drop shadow when transparent for better visibility
-                  !showMobileGlass && !showBackgroundDesktop ? 'drop-shadow-lg' : ''
+                  (isMobileLandscapeHomeTop || (!showMobileGlass && !showBackgroundDesktop)) ? 'drop-shadow-lg' : ''
                 }`}
               >
                 Sikh Students Association
@@ -125,16 +152,18 @@ export default function Navbar() {
               {/* Subtitle: Sheridan */}
               <p
                 className={`text-xs sm:text-[9px] md:text-[10px] leading-tight ${
-                  // Mobile: White/80 when transparent, softblue when glassy
+                  // Mobile: White/80 when transparent (including landscape home top), softblue when glassy
                   // Desktop: White/70 when transparent, softblue when background shown
-                  showMobileGlass
+                  isMobileLandscapeHomeTop || (!showMobileGlass && !showBackgroundDesktop)
+                    ? 'text-white/80'
+                    : showMobileGlass
                     ? 'text-softblue'
                     : showBackgroundDesktop
                     ? 'lg:text-softblue'
                     : 'text-white/80'
                 } ${
                   // Add drop shadow when transparent for better visibility
-                  !showMobileGlass && !showBackgroundDesktop ? 'drop-shadow-md' : ''
+                  (isMobileLandscapeHomeTop || (!showMobileGlass && !showBackgroundDesktop)) ? 'drop-shadow-md' : ''
                 }`}
               >
                 Sheridan
@@ -185,14 +214,14 @@ export default function Navbar() {
             >
               <HiMenu
                 className={`w-7 h-7 sm:w-8 sm:h-8 ${
-                  // Mobile: Navy when glassy, white when transparent. Desktop: Use scroll/page logic
-                  showMobileGlass
+                  // Mobile: Navy when glassy, white when transparent (including landscape home top). Desktop: Use scroll/page logic
+                  isMobileLandscapeHomeTop || (!showMobileGlass && !showBackgroundDesktop)
+                    ? 'text-white'
+                    : showMobileGlass
                     ? 'text-navy lg:text-white'
-                    : 'text-white'
-                } ${
-                  showBackgroundDesktop && !showMobileGlass
+                    : showBackgroundDesktop
                     ? 'lg:text-navy'
-                    : ''
+                    : 'text-white'
                 }`}
               />
             </button>
