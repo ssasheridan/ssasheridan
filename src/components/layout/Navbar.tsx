@@ -99,20 +99,19 @@ export default function Navbar() {
               {/* Main title: Sikh Students Association - Always full text */}
               <p
                 className={`font-display font-bold leading-tight ${
-                  // Mobile: White when transparent, navy when glassy. Desktop: Use scroll/page logic
+                  // Mobile: White when transparent, navy when glassy
+                  // Desktop: White when transparent, navy when background shown
                   showMobileGlass
-                    ? 'text-navy lg:text-white'
-                    : 'text-white'
-                } ${
-                  showBackgroundDesktop && !showMobileGlass
+                    ? 'text-navy'
+                    : showBackgroundDesktop
                     ? 'lg:text-navy'
-                    : ''
+                    : 'text-white'
                 } ${
                   // Text sizing: smaller on mobile, larger on desktop
                   'text-[10px] sm:text-xs md:text-sm lg:text-base'
                 } ${
                   // Add drop shadow when transparent for better visibility
-                  !showMobileGlass ? 'drop-shadow-lg' : ''
+                  !showMobileGlass && !showBackgroundDesktop ? 'drop-shadow-lg' : ''
                 }`}
               >
                 Sikh Students Association
@@ -120,17 +119,16 @@ export default function Navbar() {
               {/* Subtitle: Sheridan */}
               <p
                 className={`text-[8px] sm:text-[9px] md:text-[10px] leading-tight ${
-                  // Mobile: White/80 when transparent, softblue when glassy. Desktop: Use scroll/page logic
+                  // Mobile: White/80 when transparent, softblue when glassy
+                  // Desktop: White/70 when transparent, softblue when background shown
                   showMobileGlass
-                    ? 'text-softblue lg:text-white/70'
+                    ? 'text-softblue'
+                    : showBackgroundDesktop
+                    ? 'lg:text-softblue'
                     : 'text-white/80'
                 } ${
-                  showBackgroundDesktop && !showMobileGlass
-                    ? 'lg:text-softblue'
-                    : ''
-                } ${
                   // Add drop shadow when transparent for better visibility
-                  !showMobileGlass ? 'drop-shadow-md' : ''
+                  !showMobileGlass && !showBackgroundDesktop ? 'drop-shadow-md' : ''
                 }`}
               >
                 Sheridan
