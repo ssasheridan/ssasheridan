@@ -141,10 +141,11 @@ export default function Hero({
 
       {/* Ik Onkar Symbol - Top Right Corner */}
       <motion.p
-        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 z-10 text-xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 z-[50] text-xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
+        style={{ pointerEvents: 'none' }}
       >
         ੴ
       </motion.p>
@@ -158,22 +159,22 @@ export default function Hero({
         >
           {/* Main Title */}
           <motion.h1
-            className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-2 sm:mb-6 leading-tight px-2"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="block whitespace-nowrap text-xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+            <span className="block whitespace-nowrap text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
               {title.split(',')[0]}
             </span>
-            <span className="block text-khalsa drop-shadow-lg text-xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-0.5 sm:mt-0">
+            <span className="block text-khalsa drop-shadow-lg text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0">
               {title.includes(',') ? title.split(',')[1].trim() : ''}
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-sm sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-2 sm:mb-4 font-light px-2"
+            className="text-base sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-4 sm:mb-4 font-light px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -183,7 +184,7 @@ export default function Hero({
 
           {/* Tagline */}
           <motion.p
-            className="text-xs sm:text-xl md:text-2xl text-khalsa font-medium mb-3 sm:mb-10 px-2"
+            className="text-sm sm:text-xl md:text-2xl text-khalsa font-medium mb-6 sm:mb-10 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -194,15 +195,15 @@ export default function Hero({
           {/* CTA Buttons */}
           {showCTA && (
             <motion.div
-              className="flex flex-row flex-wrap items-center justify-center gap-2 sm:gap-4 mb-4 sm:mb-20 px-2"
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-20 px-2 w-full sm:w-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <Button href={joinLink} size="sm" className="glow-gold sm:!text-base sm:!px-6 sm:!py-3" external>
+              <Button href={joinLink} size="lg" className="glow-gold w-full sm:w-auto sm:!text-base sm:!px-6 sm:!py-3" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="sm" className="sm:!text-base sm:!px-6 sm:!py-3">
+              <Button href="/events" variant="outline" size="lg" className="w-full sm:w-auto sm:!text-base sm:!px-6 sm:!py-3">
                 Explore Events
               </Button>
             </motion.div>
