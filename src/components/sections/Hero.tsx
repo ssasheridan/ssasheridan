@@ -150,7 +150,7 @@ export default function Hero({
       </motion.p>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 sm:pt-16 md:pt-20 lg:pt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -158,20 +158,22 @@ export default function Hero({
         >
           {/* Main Title */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-display font-bold text-white mb-3 sm:mb-4 md:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="block">{title.split(',')[0]}</span>
-            <span className="block text-khalsa drop-shadow-lg">
-              {title.includes(',') ? title.split(',')[1] : ''}
+            <span className="block whitespace-nowrap text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+              {title.split(',')[0]}
+            </span>
+            <span className="block text-khalsa drop-shadow-lg text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-1 sm:mt-2">
+              {title.includes(',') ? title.split(',')[1].trim() : ''}
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-3 sm:mb-4 font-light px-2"
+            className="text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/80 mb-2 sm:mb-3 md:mb-4 font-light px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -181,7 +183,7 @@ export default function Hero({
 
           {/* Tagline */}
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-khalsa font-medium mb-6 sm:mb-10 px-2"
+            className="text-sm sm:text-lg md:text-xl lg:text-2xl text-khalsa font-medium mb-4 sm:mb-6 md:mb-10 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
