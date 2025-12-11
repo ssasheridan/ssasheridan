@@ -78,7 +78,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <nav className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pointer-events-auto">
-        <div className="flex items-center justify-between h-16 sm:h-20 relative">
+        <div className="flex items-center justify-between h-20 sm:h-20 md:h-20 relative">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <motion.div
@@ -91,11 +91,11 @@ export default function Navbar() {
                 alt="SSA Sheridan Logo"
                 width={48}
                 height={48}
-                className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain"
+                className="h-12 w-12 sm:h-10 sm:w-10 md:h-12 md:w-12 object-contain"
                 priority
               />
             </motion.div>
-            <div className="block max-w-[calc(100vw-120px)] sm:max-w-none">
+            <div className="block max-w-[calc(100vw-140px)] sm:max-w-none">
               {/* Main title: Sikh Students Association - Always full text */}
               <p
                 className={`font-display font-bold leading-tight ${
@@ -107,8 +107,8 @@ export default function Navbar() {
                     ? 'lg:text-navy'
                     : 'text-white'
                 } ${
-                  // Text sizing: smaller on mobile, larger on desktop
-                  'text-[10px] sm:text-xs md:text-sm lg:text-base'
+                  // Text sizing: increased on mobile for better visibility
+                  'text-sm sm:text-xs md:text-sm lg:text-base'
                 } ${
                   // Add drop shadow when transparent for better visibility
                   !showMobileGlass && !showBackgroundDesktop ? 'drop-shadow-lg' : ''
@@ -118,7 +118,7 @@ export default function Navbar() {
               </p>
               {/* Subtitle: Sheridan */}
               <p
-                className={`text-[8px] sm:text-[9px] md:text-[10px] leading-tight ${
+                className={`text-xs sm:text-[9px] md:text-[10px] leading-tight ${
                   // Mobile: White/80 when transparent, softblue when glassy
                   // Desktop: White/70 when transparent, softblue when background shown
                   showMobileGlass
