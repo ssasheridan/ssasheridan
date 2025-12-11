@@ -139,9 +139,9 @@ export default function Hero({
         />
       </div>
 
-      {/* Ik Onkar Symbol - Top Right Corner (Desktop) / Center Above Title (Mobile Portrait) */}
+      {/* Ik Onkar Symbol - Top Right Corner (Desktop) */}
       <motion.p
-        className="absolute top-8 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0 z-[50] text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        className="absolute top-8 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 hidden sm:block z-[50] text-3xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -150,66 +150,147 @@ export default function Hero({
         ੴ
       </motion.p>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 sm:pt-20 md:pt-24 pb-8 sm:pb-0">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+      {/* Content - Mobile Portrait with Bounce Animation */}
+      <motion.div 
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 sm:pt-20 md:pt-24 pb-8 sm:pb-0 block sm:hidden"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ 
+          opacity: 1, 
+          y: [0, -10, 0, -10, 0, -10, 0],
+        }}
+        transition={{ 
+          opacity: { duration: 0.8 },
+          y: {
+            duration: 2.5,
+            repeat: 2,
+            ease: 'easeInOut',
+            delay: 2,
+          }
+        }}
+      >
+        {/* Ik Onkar Symbol - Mobile Portrait Only (Above Title, inside content) */}
+        <motion.p
+          className="text-3xl text-khalsa font-serif drop-shadow-lg mb-3"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          style={{ pointerEvents: 'none' }}
         >
-          {/* Main Title */}
-          <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2 pt-10 sm:pt-0"
+          ੴ
+        </motion.p>
+
+        {/* Main Title */}
+        <motion.h1
+          className="text-3xl font-display font-bold text-white mb-4 leading-tight px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <span className="block whitespace-nowrap text-3xl">
+            {title.split(',')[0]}
+          </span>
+          <span className="block text-khalsa drop-shadow-lg text-3xl mt-1">
+            {title.includes(',') ? title.split(',')[1].trim() : ''}
+          </span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-base text-white/80 mb-4 font-light px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {subtitle}
+        </motion.p>
+
+        {/* Tagline */}
+        <motion.p
+          className="text-sm text-khalsa font-medium mb-6 px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          Your Sheridan Support Hub
+        </motion.p>
+
+        {/* CTA Buttons */}
+        {showCTA && (
+          <motion.div
+            className="flex flex-col items-stretch justify-center gap-3 mb-4 px-2 w-full mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-              {title.split(',')[0]}
-            </span>
-            <span className="block text-khalsa drop-shadow-lg text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0">
-              {title.includes(',') ? title.split(',')[1].trim() : ''}
-            </span>
-          </motion.h1>
+            <Button href={joinLink} size="lg" className="glow-gold w-full" external>
+              Join SSA Today
+            </Button>
+            <Button href="/events" variant="outline" size="lg" className="w-full">
+              Explore Events
+            </Button>
+          </motion.div>
+        )}
+      </motion.div>
 
-          {/* Subtitle */}
-          <motion.p
-            className="text-base sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-4 sm:mb-4 font-light px-2"
+      {/* Content - Desktop/Landscape (No Bounce) */}
+      <motion.div 
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 sm:pt-20 md:pt-24 pb-8 sm:pb-0 hidden sm:block"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Main Title */}
+        <motion.h1
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
+            {title.split(',')[0]}
+          </span>
+          <span className="block text-khalsa drop-shadow-lg text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0">
+            {title.includes(',') ? title.split(',')[1].trim() : ''}
+          </span>
+        </motion.h1>
+
+        {/* Subtitle */}
+        <motion.p
+          className="text-base sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-4 sm:mb-4 font-light px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {subtitle}
+        </motion.p>
+
+        {/* Tagline */}
+        <motion.p
+          className="text-sm sm:text-xl md:text-2xl text-khalsa font-medium mb-6 sm:mb-10 px-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          Your Sheridan Support Hub
+        </motion.p>
+
+        {/* CTA Buttons */}
+        {showCTA && (
+          <motion.div
+            className="flex flex-row items-center justify-center gap-4 mb-4 sm:mb-20 px-2 w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-            {subtitle}
-          </motion.p>
-
-          {/* Tagline */}
-          <motion.p
-            className="text-sm sm:text-xl md:text-2xl text-khalsa font-medium mb-6 sm:mb-10 px-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            Your Sheridan Support Hub
-          </motion.p>
-
-          {/* CTA Buttons */}
-          {showCTA && (
-            <motion.div
-              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-20 px-2 w-full sm:w-auto mt-6 sm:mt-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <Button href={joinLink} size="lg" className="glow-gold w-full sm:w-auto sm:!text-base sm:!px-6 sm:!py-3" external>
-                Join SSA Today
-              </Button>
-              <Button href="/events" variant="outline" size="lg" className="w-full sm:w-auto sm:!text-base sm:!px-6 sm:!py-3">
-                Explore Events
-              </Button>
-            </motion.div>
-          )}
-        </motion.div>
-      </div>
+            <Button href={joinLink} size="sm" className="glow-gold sm:!text-base sm:!px-6 sm:!py-3" external>
+              Join SSA Today
+            </Button>
+            <Button href="/events" variant="outline" size="sm" className="sm:!text-base sm:!px-6 sm:!py-3">
+              Explore Events
+            </Button>
+          </motion.div>
+        )}
+      </motion.div>
 
       {/* Scroll Indicator - Positioned relative to section, not content container */}
       <motion.div
