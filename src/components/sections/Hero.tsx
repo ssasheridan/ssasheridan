@@ -18,7 +18,7 @@ export default function Hero({
   joinLink = 'https://forms.office.com/r/ackW8bMdtn',
 }: HeroProps) {
   return (
-    <section className="hero-section relative min-h-screen sm:min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy">
+    <section className="hero-section relative min-h-screen sm:min-h-[85vh] md:min-h-screen flex flex-col overflow-hidden bg-navy">
       {/* Background Banner Image */}
       <div className="absolute inset-0">
         <Image
@@ -141,7 +141,7 @@ export default function Hero({
 
       {/* Ik Onkar Symbol - Top Right Corner */}
       <motion.p
-        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 z-10 text-xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg"
+        className="absolute top-20 right-4 sm:top-8 sm:right-8 md:top-12 md:right-12 z-10 text-xl sm:text-3xl md:text-4xl lg:text-5xl text-khalsa font-serif drop-shadow-lg landscape:top-16 landscape:right-4"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -150,16 +150,16 @@ export default function Hero({
       </motion.p>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24 hero-content-wrapper">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24 flex flex-col justify-between min-h-full pb-6 sm:pb-8 md:pb-12 landscape:pt-12 landscape:px-6 landscape:pb-3">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="hero-text-content"
+          className="flex-grow flex flex-col justify-center"
         >
           {/* Main Title */}
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-3 sm:mb-6 leading-tight px-2 landscape:text-3xl landscape:mb-2"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-3 sm:mb-6 leading-tight px-2 landscape:text-3xl landscape:mb-1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -167,14 +167,14 @@ export default function Hero({
             <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl landscape:text-2xl">
               {title.split(',')[0]}
             </span>
-            <span className="block text-khalsa drop-shadow-lg text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0 landscape:text-xl">
+            <span className="block text-khalsa drop-shadow-lg text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0 landscape:text-2xl">
               {title.includes(',') ? title.split(',')[1].trim() : ''}
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-base sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-2 sm:mb-4 font-light px-2 landscape:text-sm landscape:mb-1"
+            className="text-base sm:text-2xl md:text-3xl lg:text-4xl text-white/80 mb-2 sm:mb-4 font-light px-2 landscape:text-xs landscape:mb-0.5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -184,7 +184,7 @@ export default function Hero({
 
           {/* Tagline */}
           <motion.p
-            className="text-sm sm:text-xl md:text-2xl text-khalsa font-medium mb-4 sm:mb-10 px-2 landscape:text-xs landscape:mb-2"
+            className="text-sm sm:text-xl md:text-2xl text-khalsa font-medium mb-4 sm:mb-10 px-2 landscape:text-xs landscape:mb-0.5"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -193,18 +193,18 @@ export default function Hero({
           </motion.p>
         </motion.div>
 
-        {/* CTA Buttons - Positioned separately for better control */}
+        {/* CTA Buttons - Positioned at bottom */}
         {showCTA && (
           <motion.div
-            className="hero-buttons-wrapper flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-20 px-2 landscape:gap-2 landscape:mb-4 landscape:scale-90"
+            className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 px-2 landscape:gap-1.5 landscape:scale-75"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <Button href={joinLink} size="lg" className="glow-gold landscape:!text-sm landscape:!px-4 landscape:!py-2" external>
+            <Button href={joinLink} size="lg" className="glow-gold" external>
               Join SSA Today
             </Button>
-            <Button href="/events" variant="outline" size="lg" className="landscape:!text-sm landscape:!px-4 landscape:!py-2">
+            <Button href="/events" variant="outline" size="lg">
               Explore Events
             </Button>
           </motion.div>
