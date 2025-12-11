@@ -151,10 +151,8 @@
 @media (max-width: 768px) {
   .hero-bg-image {
     object-fit: cover !important;
-    object-position: center 35% !important;
-    transform: scale(1.15) !important;
-    width: 100% !important;
-    height: 110% !important;
+    object-position: center 30% !important;
+    transform: scale(1.2) !important;
   }
 }
 
