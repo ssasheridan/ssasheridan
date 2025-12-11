@@ -150,12 +150,11 @@ export default function Hero({
       </motion.p>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 pb-8 sm:pt-20 sm:pb-0 md:pt-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 sm:pt-20 md:pt-24 pb-8 sm:pb-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="w-full"
         >
           {/* Main Title */}
           <motion.h1
@@ -200,10 +199,10 @@ export default function Hero({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <Button href={joinLink} size="lg" className="glow-gold text-sm sm:text-base" external>
+              <Button href={joinLink} size="sm" className="glow-gold sm:!text-base sm:!px-6 sm:!py-3" external>
                 Join SSA Today
               </Button>
-              <Button href="/events" variant="outline" size="lg" className="text-sm sm:text-base">
+              <Button href="/events" variant="outline" size="sm" className="sm:!text-base sm:!px-6 sm:!py-3">
                 Explore Events
               </Button>
             </motion.div>

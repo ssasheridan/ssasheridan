@@ -19,24 +19,14 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    checkMobile()
     window.addEventListener('scroll', handleScroll)
-    window.addEventListener('resize', checkMobile)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', checkMobile)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
@@ -69,8 +59,8 @@ export default function Navbar() {
   const showBackgroundDesktop = !hasBannerPage || scrolled
   
   // Mobile: Show translucent/glassy effect when scrolled (but transparent at top)
-  // On home page, show subtle glassy effect even at top
-  const showMobileGlass = scrolled || (isHomePage && isMobile)
+  // On home page, show subtle glassy effect even at top (mobile only)
+  const showMobileGlass = scrolled
 
   return (
     <motion.header
@@ -79,7 +69,7 @@ export default function Navbar() {
         // Desktop: Use scroll/page logic
         isHomePage
           ? showMobileGlass
-            ? 'bg-white/20 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none lg:shadow-none'
+            ? 'bg-white/70 backdrop-blur-md shadow-sm lg:bg-transparent lg:backdrop-blur-none lg:shadow-none'
             : 'bg-white/10 backdrop-blur-sm lg:bg-transparent'
           : showMobileGlass
           ? 'bg-white/70 backdrop-blur-md shadow-sm lg:bg-transparent lg:backdrop-blur-none lg:shadow-none'
