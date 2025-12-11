@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Button from '@/components/ui/Button'
@@ -17,6 +18,46 @@ export default function Hero({
   showCTA = true,
   joinLink = 'https://forms.office.com/r/ackW8bMdtn',
 }: HeroProps) {
+  // Mobile scroll animation - scroll up and down once or twice on load
+  useEffect(() => {
+    // Only run on mobile portrait (width < 640px and height > width)
+    const isMobilePortrait = () => {
+      if (typeof window === 'undefined') return false
+      return window.innerWidth < 640 && window.innerHeight > window.innerWidth
+    }
+
+    if (!isMobilePortrait()) return
+
+    // Small delay to ensure page is loaded
+    const timeoutId = setTimeout(() => {
+      const scrollAmount = 30 // Pixels to scroll
+      const scrollDuration = 250 // 0.25 seconds per scroll direction
+      let scrollCount = 0
+      const maxScrolls = 2 // Total scrolls (up and down = 1 cycle)
+
+      const scrollUp = () => {
+        window.scrollTo({
+          top: scrollAmount,
+          behavior: 'smooth',
+        })
+        setTimeout(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+          scrollCount++
+          if (scrollCount < maxScrolls) {
+            setTimeout(scrollUp, scrollDuration)
+          }
+        }, scrollDuration)
+      }
+
+      scrollUp()
+    }, 500) // Start after 0.5 seconds
+
+    return () => clearTimeout(timeoutId)
+  }, [])
+
   return (
     <section className="relative min-h-[85vh] sm:min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-navy">
       {/* Background Banner Image */}
@@ -150,22 +191,17 @@ export default function Hero({
         ੴ
       </motion.p>
 
-      {/* Content - Mobile Portrait with Bounce Animation */}
+      {/* Content - Mobile Portrait */}
       <motion.div 
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-20 md:pt-24 pb-8 sm:pb-0 block sm:hidden"
         initial={{ opacity: 0, y: 30 }}
         animate={{ 
           opacity: 1, 
-          y: [0, -10, 0, -10, 0, -10, 0],
+          y: 0,
         }}
         transition={{ 
           opacity: { duration: 0.8 },
-          y: {
-            duration: 2.5,
-            repeat: 2,
-            ease: 'easeInOut',
-            delay: 2,
-          }
+          y: { duration: 0.6 }
         }}
       >
         {/* Ik Onkar Symbol - Mobile Portrait Only (Above Title, inside content) */}
