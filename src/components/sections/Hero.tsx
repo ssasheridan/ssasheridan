@@ -25,7 +25,7 @@ export default function Hero({
           src="/banners/Banner_Updated.png"
           alt="SSA Sheridan Background"
           fill
-          className="hero-bg-image opacity-60 object-cover"
+          className="hero-bg-image opacity-60 object-cover scale-110"
           priority
           quality={90}
           sizes="100vw"

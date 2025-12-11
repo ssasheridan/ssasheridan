@@ -152,6 +152,7 @@
   .hero-bg-image {
     object-fit: cover !important;
     object-position: center center !important;
+    transform: scale(1.1) !important;
   }
 }
 
@@ -159,6 +160,7 @@
   .hero-bg-image {
     object-fit: cover !important;
     object-position: center center !important;
+    transform: scale(1.1) !important;
   }
 }
 
