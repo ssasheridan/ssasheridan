@@ -151,7 +151,7 @@
 @media (max-width: 768px) and (orientation: portrait) {
   .hero-bg-image {
     object-fit: cover !important;
-    object-position: center 50% !important;
+    object-position: center 60% !important;
     transform: scale(1.4) !important;
   }
 }
