@@ -152,7 +152,7 @@ export default function Hero({
 
       {/* Content - Mobile Portrait with Bounce Animation */}
       <motion.div 
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-0 block sm:hidden"
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 sm:pt-20 md:pt-24 pb-8 sm:pb-0 block sm:hidden"
         initial={{ opacity: 0, y: 30 }}
         animate={{ 
           opacity: 1, 
