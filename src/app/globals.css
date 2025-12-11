@@ -152,7 +152,7 @@
   .hero-bg-image {
     object-fit: cover !important;
     object-position: center 75% !important;
-    transform: scale(1.4) !important;
+    transform: scale(1.5) !important;
   }
 }
 
@@ -168,6 +168,61 @@
   section.hero-section {
     min-height: 100vh !important;
     min-height: 100dvh !important;
+  }
+}
+
+/* Portrait mode button positioning - 25% from bottom */
+@media (max-width: 768px) and (orientation: portrait) {
+  .hero-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    padding-bottom: 25vh;
+  }
+  
+  .hero-text-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .hero-buttons-wrapper {
+    margin-top: auto;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Landscape mode - larger text and smaller buttons */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-content-wrapper {
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  .hero-text-content h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-text-content h1 span:first-child {
+    font-size: 1.75rem !important;
+  }
+  
+  .hero-text-content h1 span:last-child {
+    font-size: 1.25rem !important;
+  }
+  
+  .hero-buttons-wrapper {
+    margin-top: 0.5rem;
+  }
+  
+  .hero-buttons-wrapper a,
+  .hero-buttons-wrapper button {
+    font-size: 0.75rem !important;
+    padding: 0.4rem 0.8rem !important;
+    min-height: auto !important;
   }
 }
 

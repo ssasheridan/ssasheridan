@@ -150,20 +150,21 @@ export default function Hero({
       </motion.p>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24 hero-content-wrapper">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="hero-text-content"
         >
           {/* Main Title */}
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-3 sm:mb-6 leading-tight px-2 landscape:text-2xl landscape:mb-2"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-white mb-3 sm:mb-6 leading-tight px-2 landscape:text-3xl landscape:mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl landscape:text-xl">
+            <span className="block whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl landscape:text-2xl">
               {title.split(',')[0]}
             </span>
             <span className="block text-khalsa drop-shadow-lg text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-1 sm:mt-0 landscape:text-xl">
@@ -191,24 +192,24 @@ export default function Hero({
             Your Sheridan Support Hub
           </motion.p>
         </motion.div>
-      </div>
 
-      {/* CTA Buttons - Positioned at bottom of hero section */}
-      {showCTA && (
-        <motion.div
-          className="absolute bottom-16 sm:bottom-20 left-0 right-0 z-10 flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 px-4 landscape:bottom-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <Button href={joinLink} size="lg" className="glow-gold" external>
-            Join SSA Today
-          </Button>
-          <Button href="/events" variant="outline" size="lg">
-            Explore Events
-          </Button>
-        </motion.div>
-      )}
+        {/* CTA Buttons - Positioned separately for better control */}
+        {showCTA && (
+          <motion.div
+            className="hero-buttons-wrapper flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-20 px-2 landscape:gap-2 landscape:mb-4 landscape:scale-90"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <Button href={joinLink} size="lg" className="glow-gold landscape:!text-sm landscape:!px-4 landscape:!py-2" external>
+              Join SSA Today
+            </Button>
+            <Button href="/events" variant="outline" size="lg" className="landscape:!text-sm landscape:!px-4 landscape:!py-2">
+              Explore Events
+            </Button>
+          </motion.div>
+        )}
+      </div>
 
       {/* Scroll Indicator - Positioned relative to section, not content container */}
       <motion.div
