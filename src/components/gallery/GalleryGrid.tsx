@@ -203,7 +203,7 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="relative max-w-5xl max-h-[85vh] mx-4"
+              className="relative w-[95vw] max-w-7xl h-[90vh] max-h-[90vh] mx-4 flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -212,17 +212,21 @@ export default function GalleryGrid({ images, columns = 3 }: GalleryGridProps) {
               {(() => {
                 const lightboxImageBuilder = images[selectedIndex] ? urlFor(images[selectedIndex]) : null
                 const lightboxImageSrc = lightboxImageBuilder
-                  ? lightboxImageBuilder.width(1200).height(800).url()
+                  ? lightboxImageBuilder.width(1920).quality(95).url()
                   : null
                 
                 return lightboxImageSrc ? (
-                  <Image
-                    src={lightboxImageSrc}
-                    alt={images[selectedIndex].caption || `Gallery image ${selectedIndex + 1}`}
-                    width={1200}
-                    height={800}
-                    className="object-contain rounded-lg"
-                  />
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Image
+                      src={lightboxImageSrc}
+                      alt={images[selectedIndex].caption || `Gallery image ${selectedIndex + 1}`}
+                      fill
+                      className="object-contain rounded-lg"
+                      quality={95}
+                      priority
+                      sizes="(max-width: 768px) 95vw, (max-width: 1200px) 90vw, 1920px"
+                    />
+                  </div>
                 ) : null
               })()}
 
