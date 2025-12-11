@@ -150,7 +150,7 @@ export default function Hero({
       </motion.p>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24 flex flex-col justify-between min-h-full pb-6 sm:pb-8 md:pb-12 landscape:pt-8 landscape:pb-3">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-12 sm:pt-20 md:pt-24 flex flex-col justify-between md:justify-center min-h-[calc(100vh-4rem)] sm:min-h-[calc(85vh-4rem)] md:min-h-0 pb-6 sm:pb-8 md:pb-12 landscape:pt-8 landscape:pb-3">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
