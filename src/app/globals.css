@@ -151,7 +151,7 @@
 @media (max-width: 768px) and (orientation: portrait) {
   .hero-bg-image {
     object-fit: cover !important;
-    object-position: center 60% !important;
+    object-position: center 45% !important;
     transform: scale(1.4) !important;
   }
 }
@@ -163,9 +163,11 @@
     object-position: center center !important;
     transform: scale(1.3) !important;
   }
-  
-  /* Reduce hero height in landscape */
-  section.hero-section {
+}
+
+/* Hero section height for mobile landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section-mobile {
     min-height: 100vh !important;
     min-height: 100dvh !important;
   }
