@@ -57,7 +57,7 @@ export default {
     },
     {
       name: 'rehrasSahib',
-      title: 'Weekly Rehras Sahib Path Details',
+      title: 'Weekly Rehras Sahib Path Details (Legacy - Use Promotional Ads Instead)',
       type: 'object',
       fields: [
         {
@@ -99,6 +99,14 @@ export default {
           description: 'e.g., Every semester',
         },
       ],
+      description: '⚠️ DEPRECATED: Use Promotional Ads below instead. This field is kept for backward compatibility.',
+    },
+    {
+      name: 'promotionalAds',
+      title: 'Promotional Ads & Announcements',
+      type: 'array',
+      of: [{ type: 'promotionalAd' }],
+      description: 'Add promotional ads, announcements, or featured content. You can add multiple ads, unlist them, or remove all. These appear in the "Comprehensive Student Support" section.',
     },
   ],
   preview: {

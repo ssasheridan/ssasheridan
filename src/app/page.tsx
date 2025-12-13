@@ -38,7 +38,10 @@ export default async function HomePage() {
         title="Our Constitution"
         subtitle="Learn about our official constitution and organizational bylaws"
       />
-      <SupportServicesSection rehrasSahib={settings?.rehrasSahib} />
+      <SupportServicesSection 
+        rehrasSahib={settings?.rehrasSahib} 
+        promotionalAds={settings?.promotionalAds}
+      />
       <CampusSection />
       <SocialSection
         youtubeUrl={settings?.youtube}

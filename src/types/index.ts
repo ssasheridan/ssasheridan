@@ -1,3 +1,30 @@
+export interface PromotionalAd {
+  _key: string
+  title: string
+  subtitle?: string
+  description?: string
+  images?: Array<{
+    _key: string
+    asset: {
+      _ref: string
+      _type: 'reference'
+    }
+    alt?: string
+  }>
+  details?: Array<{
+    _key: string
+    label: string
+    value: string
+    icon?: 'clock' | 'location' | 'calendar' | 'info'
+  }>
+  ctaButton?: {
+    text: string
+    link: string
+  }
+  isActive: boolean
+  order?: number
+}
+
 export interface SiteSettings {
   heroTitle: string
   heroSubtitle: string
@@ -16,6 +43,7 @@ export interface SiteSettings {
     time?: string
     semester?: string
   }
+  promotionalAds?: PromotionalAd[]
 }
 
 export interface Event {

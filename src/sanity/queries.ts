@@ -17,6 +17,29 @@ export const siteSettingsQuery = `
       day,
       time,
       semester
+    },
+    promotionalAds[] {
+      _key,
+      title,
+      subtitle,
+      description,
+      images[] {
+        _key,
+        asset,
+        alt
+      },
+      details[] {
+        _key,
+        label,
+        value,
+        icon
+      },
+      ctaButton {
+        text,
+        link
+      },
+      isActive,
+      order
     }
   }
 ` as const
