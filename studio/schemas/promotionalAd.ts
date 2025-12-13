@@ -129,7 +129,6 @@ export default {
       return {
         title: title || 'Untitled Ad',
         subtitle: subtitle || (isActive ? 'Active' : 'Hidden'),
-        media: () => isActive ? '✅' : '❌',
       }
     },
   },
