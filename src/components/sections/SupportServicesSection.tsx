@@ -87,6 +87,20 @@ const item = {
   show: { opacity: 1, y: 0 },
 }
 
+const getIconComponent = (iconType?: string) => {
+  switch (iconType) {
+    case 'clock':
+      return FaClock
+    case 'location':
+      return FaMapMarkerAlt
+    case 'calendar':
+      return FaCalendar
+    case 'info':
+    default:
+      return FaInfo
+  }
+}
+
 export default function SupportServicesSection({ 
   rehrasSahib,
   promotionalAds 
