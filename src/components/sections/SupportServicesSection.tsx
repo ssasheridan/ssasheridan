@@ -88,8 +88,17 @@ const item = {
 }
 
 export default function SupportServicesSection({ 
-  rehrasSahib 
+  rehrasSahib,
+  promotionalAds 
 }: SupportServicesSectionProps) {
+  // Get active promotional ads sorted by order
+  const activeAds = promotionalAds
+    ?.filter(ad => ad.isActive !== false)
+    .sort((a, b) => (a.order || 0) - (b.order || 0)) || []
+
+  // Legacy: If no promotional ads, show legacy rehrasSahib if available
+  const showLegacyRehras = activeAds.length === 0 && rehrasSahib
+
   return (
     <section className="py-12 sm:py-16 md:py-24 bg-white relative overflow-hidden">
       {/* Background Pattern */}
